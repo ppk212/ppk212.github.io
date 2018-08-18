@@ -32,6 +32,20 @@ var contractAddress = '0xb9ad7deb382C5687657D9765B778005988F29407';
 var abi =
 [
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
@@ -46,7 +60,7 @@ var abi =
 		"name": "approve",
 		"outputs": [
 			{
-				"name": "_success",
+				"name": "",
 				"type": "bool"
 			}
 		],
@@ -57,10 +71,38 @@ var abi =
 	{
 		"constant": true,
 		"inputs": [],
+		"name": "getSymbol",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
 		"name": "totalSupply",
 		"outputs": [
 			{
-				"name": "_supply",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "tokenIssuedSale",
+		"outputs": [
+			{
+				"name": "",
 				"type": "uint256"
 			}
 		],
@@ -87,12 +129,26 @@ var abi =
 		"name": "transferFrom",
 		"outputs": [
 			{
-				"name": "_success",
+				"name": "",
 				"type": "bool"
 			}
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "wallet",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -106,7 +162,86 @@ var abi =
 		"name": "balanceOf",
 		"outputs": [
 			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "decimal",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"name": "buyCoin",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "approvals",
+		"outputs": [
+			{
+				"name": "",
 				"type": "uint256"
 			}
 		],
@@ -129,12 +264,26 @@ var abi =
 		"name": "transfer",
 		"outputs": [
 			{
-				"name": "_success",
+				"name": "",
 				"type": "bool"
 			}
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "saleSupply",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -152,13 +301,19 @@ var abi =
 		"name": "allowance",
 		"outputs": [
 			{
-				"name": "_allowance",
+				"name": "",
 				"type": "uint256"
 			}
 		],
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"anonymous": false,
@@ -210,6 +365,7 @@ var simpleTokenContract;
 var simpleToken;
 var accountAddress;
 var currentEtherBalance;
+var currentTokenBalance;
 
 window.addEventListener('load', function() {
 
@@ -243,24 +399,22 @@ function getLink(addr) {
 }
 
 function getValue() {
+  getEther();
+  getToken();
+}
+
+function getEther() {
   web3.eth.getBalance(accountAddress, function(e,r){
-    //web3.fromWei(r.c[0], 'ether', function(e,er){
-      currentEtherBalance = (r.c[0]/10000);
-      document.getElementById('ethValue').innerHTML = currentEtherBalance + "ETH";
-    //});
+    currentEtherBalance = (r.c[0]/10000);
+    document.getElementById('ethValue').innerHTML = currentEtherBalance + "ETH";
   });
+}
 
-  //currentEtherBalance = web3.fromWei(web3.eth.getBalance(accountAddress), 'ether');
-  //document.getElementById('ethValue').innerHTML = currentEtherBalance;
-    //simpleTokenContract.get(function(e,r){
-    //document.getElementById('storedData').innerHTML=r.toNumber();
-    //web3.eth.filter('latest').watch(function(){
-      //var currentEtherBalance = web3.eth.getBalance(accountAddress).toNumber();
-
-    //});
-    //console.log("getValue() 호출");
-
-  //});
+function getToken() {
+  simpleTokenContract.balanceOf(function(e,r){
+    currentTokenBalance = r;
+    document.getElementById('SimpleTokenValue').innerHTML = currentTokenBalance;
+  });
 }
 
 function setValue() {
