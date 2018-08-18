@@ -208,6 +208,7 @@ var abi =
 
 var simpleTokenContract;
 var simpleToken;
+var accountAddress;
 
 window.addEventListener('load', function() {
 
@@ -230,7 +231,7 @@ function startApp() {
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
   web3.eth.getAccounts(function(e,r){
   document.getElementById('accountAddr').innerHTML = getLink(r[0]);
-
+  accountAddress = r[0];
   });
 
   getValue();
@@ -243,6 +244,9 @@ function getLink(addr) {
 function getValue() {
     //simpleTokenContract.get(function(e,r){
     //document.getElementById('storedData').innerHTML=r.toNumber();
+    simpleTokenContract.balanceOf(accountAddress, function(e,r){
+      document.getElementById('ethValue').innerHTML = r;
+    });
     console.log("getValue() 호출");
 
   //});
