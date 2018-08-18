@@ -243,10 +243,13 @@ function getLink(addr) {
 }
 
 function getValue() {
-  web3.fromWei(web3.eth.getBalance(accountAddress), 'ether', function(e,r){
-    currentEtherBalance = r;
-    document.getElementById('ethValue').innerHTML = currentEtherBalance;
+  web3.eth.getBalance(accountAddress, function(e,r){
+    web3.fromWei(r, 'ether', function(e,r){
+      currentEtherBalance = r;
+      document.getElementById('ethValue').innerHTML = currentEtherBalance;
+    });
   });
+
   //currentEtherBalance = web3.fromWei(web3.eth.getBalance(accountAddress), 'ether');
   //document.getElementById('ethValue').innerHTML = currentEtherBalance;
     //simpleTokenContract.get(function(e,r){
