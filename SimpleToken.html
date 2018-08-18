@@ -244,10 +244,10 @@ function getLink(addr) {
 
 function getValue() {
   web3.eth.getBalance(accountAddress, function(e,r){
-    web3.fromWei(r.c[0], 'ether', function(e,r){
-      currentEtherBalance = r;
+    //web3.fromWei(r.c[0], 'ether', function(e,r){
+      currentEtherBalance = r.c[0];
       document.getElementById('ethValue').innerHTML = currentEtherBalance;
-    });
+    //});
   });
 
   //currentEtherBalance = web3.fromWei(web3.eth.getBalance(accountAddress), 'ether');
