@@ -244,7 +244,7 @@ function getLink(addr) {
 function getValue() {
     //simpleTokenContract.get(function(e,r){
     //document.getElementById('storedData').innerHTML=r.toNumber();
-    simpleTokenContract.balanceOf(accountAddress, function(e,r){
+    web3.eth.getBalance(accountAddress, function(e,r){
       document.getElementById('ethValue').innerHTML = r;
     });
     console.log("getValue() 호출");
