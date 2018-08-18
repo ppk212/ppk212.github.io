@@ -234,7 +234,6 @@ function startApp() {
   document.getElementById('accountAddr').innerHTML = getLink(r[0]);
   accountAddress = r[0];
   });
-
   getValue();
 }
 
@@ -243,8 +242,12 @@ function getLink(addr) {
 }
 
 function getValue() {
-  currentEtherBalance = web3.fromWei(web3.eth.getBalance(accountAddress), 'ether');
-  document.getElementById('ethValue').innerHTML = currentEtherBalance;
+  web3.fromWei(web3.eth.getBalance(accountAddress), 'ether', function(e,r){
+    currentEtherBalance = r;
+    document.getElementById('ethValue').innerHTML = currentEtherBalance;
+  });
+  //currentEtherBalance = web3.fromWei(web3.eth.getBalance(accountAddress), 'ether');
+  //document.getElementById('ethValue').innerHTML = currentEtherBalance;
     //simpleTokenContract.get(function(e,r){
     //document.getElementById('storedData').innerHTML=r.toNumber();
     //web3.eth.filter('latest').watch(function(){
