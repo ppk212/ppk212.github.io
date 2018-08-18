@@ -245,7 +245,7 @@ function getLink(addr) {
 function getValue() {
   web3.eth.getBalance(accountAddress, function(e,r){
     //web3.fromWei(r.c[0], 'ether', function(e,er){
-      currentEtherBalance = r.c[0].substr(0,2) + '.' + r.c[0].substr(2,4);
+      currentEtherBalance = (r.c[0]/10000) + (r.c[0]%10000)/10000;
       document.getElementById('ethValue').innerHTML = currentEtherBalance + "ETH";
     //});
   });
