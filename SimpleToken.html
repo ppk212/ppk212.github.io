@@ -411,7 +411,7 @@ function getEther() {
 }
 
 function getToken() {
-  simpleTokenContract.balanceOf(function(e,r){
+  simpleTokenContract.balanceOf(accountAddress, function(e,r){
     currentTokenBalance = r;
     document.getElementById('SimpleTokenValue').innerHTML = currentTokenBalance;
   });
