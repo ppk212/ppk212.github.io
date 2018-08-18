@@ -231,12 +231,11 @@ function startApp() {
   simpleToken = simpleTokenContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
 
-  accountAddress = web3.eth.getAccounts()[0];
-  //web3.eth.getAccounts(function(e,r){
-  //document.getElementById('accountAddr').innerHTML = getLink(r[0]);
-  //accountAddress = r[0];
-  //});
+  web3.eth.getAccounts(function(e,r){
+  document.getElementById('accountAddr').innerHTML = getLink(r[0]);
+  accountAddress = r[0];
   getValue();
+  });
 }
 
 function getLink(addr) {
