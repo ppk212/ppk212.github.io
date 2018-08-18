@@ -209,6 +209,7 @@ var abi =
 var simpleTokenContract;
 var simpleToken;
 var accountAddress;
+var currentEtherBalance;
 
 window.addEventListener('load', function() {
 
@@ -242,7 +243,7 @@ function getLink(addr) {
 }
 
 function getValue() {
-  var currentEtherBalance = web3.fromWei(web3.eth.getBalance(accountAddress), 'ether');
+  currentEtherBalance = web3.fromWei(web3.eth.getBalance(accountAddress), 'ether');
   document.getElementById('ethValue').innerHTML = currentEtherBalance;
     //simpleTokenContract.get(function(e,r){
     //document.getElementById('storedData').innerHTML=r.toNumber();
