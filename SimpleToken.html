@@ -230,10 +230,12 @@ function startApp() {
   simpleTokenContract = web3.eth.contract(abi);
   simpleToken = simpleTokenContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
-  web3.eth.getAccounts(function(e,r){
-  document.getElementById('accountAddr').innerHTML = getLink(r[0]);
-  accountAddress = r[0];
-  });
+
+  accountAddress = web3.eth.getAccounts()[0];
+  //web3.eth.getAccounts(function(e,r){
+  //document.getElementById('accountAddr').innerHTML = getLink(r[0]);
+  //accountAddress = r[0];
+  //});
   getValue();
 }
 
