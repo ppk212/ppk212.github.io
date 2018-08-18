@@ -245,7 +245,7 @@ function getValue() {
     //simpleTokenContract.get(function(e,r){
     //document.getElementById('storedData').innerHTML=r.toNumber();
     web3.eth.getBalance(accountAddress, function(e,r){
-      document.getElementById('ethValue').innerHTML = r;
+      document.getElementById('ethValue').innerHTML = r.toNumber();
     });
     console.log("getValue() 호출");
 
