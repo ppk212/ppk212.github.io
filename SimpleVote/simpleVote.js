@@ -1,4 +1,4 @@
-var contractAddress = '0x715e4f5FCDC38502d9e25AA76f5c2d0975B1Ad28';
+var contractAddress = '0xCE85626517A41f8208f6aF8F6e178A0008498c72';
 var abi =
 [
 	{
@@ -83,6 +83,20 @@ var abi =
 	},
 	{
 		"constant": true,
+		"inputs": [],
+		"name": "getBalanceTokens",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [
 			{
 				"name": "candidate",
@@ -108,6 +122,34 @@ var abi =
 			{
 				"name": "",
 				"type": "bytes32[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getTokenPrice",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getTotalToken",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -233,6 +275,7 @@ var simpleVote;
 var accountAddress;
 var currentEtherBalance;
 var currentTokenBalance;
+var tokenPrice;
 
 window.addEventListener('load', function() {
 
@@ -279,23 +322,22 @@ function getEther() {
 }
 
 function getTokenInfo() {
+/*
+  web3.eth.getBalance(simpleVote.address, function(e,v) {
+    document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
+  });*/
 
+  simpleVote.getTotalToken(function(e,r){
+    document.getElementById('tokens-total').innerHTML = r.toString();
+  });
+  simpleVote.getBalanceTokens(function(e,r){
+    document.getElementById('tokens-sellable').innerHTML = r.toString();
+  });
+  simpleVote.getTokenPrice(function(e,r){
+    tokenPrice = parseFloat(web3.fromWei(r.toString()));
+    document.getElementById('tokens-cost').innerHTML = tokenPrice + "ETH";
+  });
   web3.eth.getBalance(simpleVote.address, function(e,v) {
     document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
   });
-  /*
-  simpleVote.deployed().then(function(contractInstance){
-    contractInstance.totalToken.call().then(function (v) {
-      document.getElementById('tokens-total').innerHTML = v.toString();
-    });
-    contractInstance.balanceTokens.call().then(function (v) {
-      document.getElementById('tokens-sellable').innerHTML = v.toString();
-    });
-    contractInstance.tokenPrice.call().then(function (v) {
-      document.getElementById('tokens-cost').innerHTML = v.toString();
-    });
-    web3.eth.getBalance(simpleVote.address, function(e,v) {
-      document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
-    });
-  });*/
 }
