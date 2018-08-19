@@ -311,6 +311,7 @@ function getLink(addr) {
 function getValue() {
   getEther();
   getTokenInfo();
+  setupCandidateRows();
 }
 
 function getEther() {
@@ -335,9 +336,18 @@ function getTokenInfo() {
   });
   simpleVote.getTokenPrice(function(e,r){
     tokenPrice = parseFloat(web3.fromWei(r.toString()));
-    document.getElementById('tokens-cost').innerHTML = tokenPrice + "ETH";
+    document.getElementById('tokens-cost').innerHTML = tokenPrice.toString() + "ETH";
   });
   web3.eth.getBalance(simpleVote.address, function(e,v) {
     document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
+  });
+}
+
+function setupCandidateRows() {
+  simpleVote.getCandidatesInfo(function(e,r){
+    for(let i=0;i<r.length;i++)
+    {
+      document.getElementById('candidate-rows').append("" + r[i] + "");
+    }
   });
 }
