@@ -1,4 +1,4 @@
-var contractAddress = '0xe5E1D508c29135C96f0aCBe24e847E27D34233f3';
+var contractAddress = '0x715e4f5FCDC38502d9e25AA76f5c2d0975B1Ad28';
 var abi =
 [
 	{
@@ -42,10 +42,6 @@ var abi =
 			{
 				"name": "_tokenPrice",
 				"type": "uint256"
-			},
-			{
-				"name": "_candidateNames",
-				"type": "bytes32[]"
 			}
 		],
 		"payable": false,
@@ -79,20 +75,6 @@ var abi =
 			{
 				"name": "",
 				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getBalanceToken",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -246,8 +228,8 @@ var abi =
 	}
 ];
 
-var simpleTokenContract;
-var simpleToken;
+var simpleVoteContract;
+var simpleVote;
 var accountAddress;
 var currentEtherBalance;
 var currentTokenBalance;
@@ -268,8 +250,8 @@ window.addEventListener('load', function() {
 });
 
 function startApp() {
-  simpleTokenContract = web3.eth.contract(abi);
-  simpleToken = simpleTokenContract.at(contractAddress);
+  simpleVoteContract = web3.eth.contract(abi);
+  simpleVote = simpleVoteContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
 
   web3.eth.getAccounts(function(e,r){
@@ -296,5 +278,16 @@ function getEther() {
 }
 
 function getTokenInfo() {
-
+  simpleVote.totalToken.call().then(function (v) {
+    document.getElementById('tokens-total').innerHTML = v.toString();
+  });
+  simpleVote.balanceTokens.call().then(function (v) {
+    document.getElementById('tokens-sellable').innerHTML = v.toString();
+  });
+  simpleVote.tokenPrice.call().then(function (v) {
+    document.getElementById('tokens-cost').innerHTML = v.toString();
+  });
+  web3.eth.getBalance(simpleVote.address, function(e,v) {
+    document.getElementById('contract-balance').innerHTML = v.toString() + "ETH";
+  });
 }
