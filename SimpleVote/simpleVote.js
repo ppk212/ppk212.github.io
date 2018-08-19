@@ -278,16 +278,18 @@ function getEther() {
 }
 
 function getTokenInfo() {
-  simpleVote.totalToken.call().then(function (v) {
-    document.getElementById('tokens-total').innerHTML = v.toString();
-  });
-  simpleVote.balanceTokens.call().then(function (v) {
-    document.getElementById('tokens-sellable').innerHTML = v.toString();
-  });
-  simpleVote.tokenPrice.call().then(function (v) {
-    document.getElementById('tokens-cost').innerHTML = v.toString();
-  });
-  web3.eth.getBalance(simpleVote.address, function(e,v) {
-    document.getElementById('contract-balance').innerHTML = v.toString() + "ETH";
-  });
+  simpleVote.deployed().then(function(contractInstance)){
+    contractInstance.totalToken.call().then(function (v) {
+      document.getElementById('tokens-total').innerHTML = v.toString();
+    });
+    contractInstance.balanceTokens.call().then(function (v) {
+      document.getElementById('tokens-sellable').innerHTML = v.toString();
+    });
+    contractInstance.tokenPrice.call().then(function (v) {
+      document.getElementById('tokens-cost').innerHTML = v.toString();
+    });
+    web3.eth.getBalance(simpleVote.address, function(e,v) {
+      document.getElementById('contract-balance').innerHTML = v.toString() + "ETH";
+    });
+  }
 }
