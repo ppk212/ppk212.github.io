@@ -348,6 +348,10 @@ function setupCandidateRows() {
     for(let i=0;i<r.length;i++)
     {
       document.getElementById('candidate-rows').append("" + web3.toUtf8(r[i]) + "");
+      var name = r[i];
+      simpleVote.getVotesReceivedFor(function e,r){
+        document.getElementById(web3.toUtf8(name)).innerHTML = r[i].toString();
+      });
     }
   });
 }
