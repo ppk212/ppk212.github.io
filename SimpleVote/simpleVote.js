@@ -1,0 +1,300 @@
+var contractAddress = '0xe5E1D508c29135C96f0aCBe24e847E27D34233f3';
+var abi =
+[
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "buy",
+		"outputs": [
+			{
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "candidateName",
+				"type": "bytes32"
+			},
+			{
+				"name": "tokenCountForVote",
+				"type": "uint256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_totalToken",
+				"type": "uint256"
+			},
+			{
+				"name": "_tokenPrice",
+				"type": "uint256"
+			},
+			{
+				"name": "_candidateNames",
+				"type": "bytes32[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "balanceTokens",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "candidateNames",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getBalanceToken",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "candidate",
+				"type": "bytes32"
+			}
+		],
+		"name": "getCandidateIndex",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getCandidatesInfo",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "getVoterDetails",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "candidate",
+				"type": "bytes32"
+			}
+		],
+		"name": "getVotesReceivedFor",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "tokenPrice",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "totalToken",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "voters",
+		"outputs": [
+			{
+				"name": "voterAddress",
+				"type": "address"
+			},
+			{
+				"name": "tokenBought",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"name": "votesReceived",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+
+var simpleTokenContract;
+var simpleToken;
+var accountAddress;
+var currentEtherBalance;
+var currentTokenBalance;
+
+window.addEventListener('load', function() {
+
+  // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+  if (typeof web3 !== 'undefined') {
+    // Use Mist/MetaMask's provider
+    window.web3 = new Web3(web3.currentProvider);
+  } else {
+    console.log('No web3? You should consider trying MetaMask!')
+    // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+    window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+  }
+  // Now you can start your app & access web3 freely:
+  startApp();
+});
+
+function startApp() {
+  simpleTokenContract = web3.eth.contract(abi);
+  simpleToken = simpleTokenContract.at(contractAddress);
+  document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
+
+  web3.eth.getAccounts(function(e,r){
+  document.getElementById('accountAddr').innerHTML = getLink(r[0]);
+  accountAddress = r[0];
+  getValue();
+  });
+}
+
+function getLink(addr) {
+  return '<a target="_blank" href=https://testnet.etherscan.io/address/' + addr + '>' + addr +'</a>';
+}
+
+function getValue() {
+  getEther();
+  getTokenInfo();
+}
+
+function getEther() {
+  web3.eth.getBalance(accountAddress, function(e,r){
+    currentEtherBalance = (r.c[0]/10000);
+    document.getElementById('ethValue').innerHTML = currentEtherBalance + "ETH";
+  });
+}
+
+function getTokenInfo() {
+
+}
