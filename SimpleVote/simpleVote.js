@@ -336,7 +336,7 @@ function getTokenInfo() {
   });
   simpleVote.getTokenPrice(function(e,r){
     tokenPrice = parseFloat(web3.fromWei(r.toString()));
-    document.getElementById('tokens-cost').innerHTML = tokenPrice.toString() + "ETH";
+    document.getElementById('token-cost').innerHTML = tokenPrice + "ETH";
   });
   web3.eth.getBalance(simpleVote.address, function(e,v) {
     document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
@@ -347,7 +347,7 @@ function setupCandidateRows() {
   simpleVote.getCandidatesInfo(function(e,r){
     for(let i=0;i<r.length;i++)
     {
-      document.getElementById('candidate-rows').append("" + r[i] + "");
+      document.getElementById('candidate-rows').append("" + web3.toUtf8(r[i]) + "");
     }
   });
 }
