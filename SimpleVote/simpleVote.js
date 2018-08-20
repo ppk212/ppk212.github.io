@@ -1,57 +1,38 @@
-let contractAddress = '0xCE85626517A41f8208f6aF8F6e178A0008498c72';
+let contractAddress = '0x348d7afdf812Cc0fe3BE1fFCC85bD7329853D4e6';
 let abi =
 [
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [],
-		"name": "buy",
+		"name": "getTotalToken",
 		"outputs": [
 			{
 				"name": "",
-				"type": "int256"
-			}
-		],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "candidateName",
-				"type": "bytes32"
-			},
-			{
-				"name": "tokenCountForVote",
-				"type": "uint256"
-			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"name": "_totalToken",
-				"type": "uint256"
-			},
-			{
-				"name": "_tokenPrice",
 				"type": "uint256"
 			}
 		],
 		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "balanceTokens",
+		"name": "getTokenPrice",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "totalToken",
 		"outputs": [
 			{
 				"name": "",
@@ -67,14 +48,14 @@ let abi =
 		"inputs": [
 			{
 				"name": "",
-				"type": "uint256"
+				"type": "bytes32"
 			}
 		],
-		"name": "candidateNames",
+		"name": "votesReceived",
 		"outputs": [
 			{
 				"name": "",
-				"type": "bytes32"
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -84,7 +65,7 @@ let abi =
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "getBalanceTokens",
+		"name": "tokenPrice",
 		"outputs": [
 			{
 				"name": "",
@@ -116,114 +97,39 @@ let abi =
 	},
 	{
 		"constant": true,
-		"inputs": [],
-		"name": "getCandidatesInfo",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTokenPrice",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTotalToken",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
 		"inputs": [
 			{
-				"name": "account",
-				"type": "address"
+				"name": "",
+				"type": "uint256"
 			}
 		],
-		"name": "getVoterDetails",
+		"name": "candidateNames",
 		"outputs": [
 			{
 				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "candidate",
 				"type": "bytes32"
 			}
 		],
-		"name": "getVotesReceivedFor",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "tokenPrice",
-		"outputs": [
+		"constant": false,
+		"inputs": [
 			{
-				"name": "",
+				"name": "candidateName",
+				"type": "bytes32"
+			},
+			{
+				"name": "tokenCountForVote",
 				"type": "uint256"
 			}
 		],
+		"name": "vote",
+		"outputs": [],
 		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "totalToken",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -251,13 +157,59 @@ let abi =
 	},
 	{
 		"constant": true,
-		"inputs": [
+		"inputs": [],
+		"name": "getCandidatesInfo",
+		"outputs": [
 			{
 				"name": "",
-				"type": "bytes32"
+				"type": "bytes32[]"
 			}
 		],
-		"name": "votesReceived",
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "buy",
+		"outputs": [
+			{
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "getVoterDetails",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "balanceTokens",
 		"outputs": [
 			{
 				"name": "",
@@ -267,6 +219,49 @@ let abi =
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "getVotesReceivedFor",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getBalanceTokens",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_totalToken",
+				"type": "uint256"
+			},
+			{
+				"name": "_tokenPrice",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	}
 ];
 
