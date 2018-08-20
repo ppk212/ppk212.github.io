@@ -1,4 +1,4 @@
-let contractAddress = '0x2CbcB861eB0A97C9dB4ae54D11CD8d2C544f2C98';
+let contractAddress = '0xc19945a1657450AF8dc52d76bf31A43df3D56E1b';
 let abi =
 [
 	{
@@ -185,18 +185,9 @@ let abi =
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "getVoterDetails",
+		"inputs": [],
+		"name": "getVotesMyself",
 		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			},
 			{
 				"name": "",
 				"type": "uint256[]"
