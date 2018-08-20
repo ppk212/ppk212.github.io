@@ -316,17 +316,11 @@ function getValue() {
 
 function getEther() {
   web3.eth.getBalance(accountAddress, function(e,r){
-    //currentEtherBalance = (r.c[0]/10000);
-    //document.getElementById('ethValue').innerHTML = currentEtherBalance + "ETH";
     document.getElementById('ethValue').innerHTML =web3.fromWei(r.toString()) + "ETH";
   });
 }
 
 function getTokenInfo() {
-/*
-  web3.eth.getBalance(simpleVote.address, function(e,v) {
-    document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
-  });*/
 
   simpleVote.getTotalToken(function(e,r){
     document.getElementById('tokens-total').innerHTML = r.toString();
