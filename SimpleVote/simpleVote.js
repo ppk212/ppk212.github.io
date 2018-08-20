@@ -383,7 +383,7 @@ function buyTokens() {
 
   simpleVote.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}, function(v) {
     web3.eth.getBalance(simpleVote.address, function(e, r) {
-    $("#contract-balance").html(web3.fromWei(result.toString()) + " ETH");
+    $("#contract-balance").html(web3.fromWei(r.toString()) + " ETH");
    });
   });
 }
