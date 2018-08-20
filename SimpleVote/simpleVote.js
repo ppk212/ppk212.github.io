@@ -209,6 +209,20 @@ let abi =
 	{
 		"constant": true,
 		"inputs": [],
+		"name": "getTokenBought",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
 		"name": "balanceTokens",
 		"outputs": [
 			{
@@ -329,13 +343,21 @@ function getLink(addr) {
 
 function getValue() {
   getEther();
+  getToken();
   getTokenInfo();
   getCandidateInfo();
+  getCandidateInfoMyself();
 }
 
 function getEther() {
   web3.eth.getBalance(accountAddress, function(e,r){
     document.getElementById('ethValue').innerHTML =web3.fromWei(r.toString()) + "ETH";
+  });
+}
+
+function getToken() {
+  simpleVote.getTokenBought(function(e,r){
+    document.getElementById('tokenValue').innerHTML = r.toString();
   });
 }
 
@@ -358,6 +380,15 @@ function getTokenInfo() {
 
 function getCandidateInfo() {
   simpleVote.getVotesReceivedFor(function(e,r){
+    for(let i=1;i<=r.length;i++)
+    {
+      document.getElementById('day_votes_' + i).innerHTML = r[i-1].toString();
+    }
+  });
+}
+
+function getCandidateInfoMyself() {
+  simpleVote.getVotesMyself(function(e,r){
     for(let i=1;i<=r.length;i++)
     {
       document.getElementById('day_votes_' + i).innerHTML = r[i-1].toString();
