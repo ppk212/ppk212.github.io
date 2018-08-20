@@ -323,7 +323,6 @@ function getValue() {
   getToken();
   getTokenInfo();
   getCandidateInfo();
-  getCandidateInfoMyself();
 }
 
 function getEther() {
