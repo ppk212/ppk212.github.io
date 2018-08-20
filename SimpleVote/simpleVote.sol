@@ -5,7 +5,6 @@ contract simpleVote {
     struct voter {
         address voterAddress;
         uint tokenBought;
-        uint[] tokensUsedPerCandidate; // 각 후보 투표에 사용한 토큰 개수
     }
     
     mapping (address => voter) public voters; // 투표자들의 주소
@@ -57,18 +56,9 @@ contract simpleVote {
         uint index = getCandidateIndex(candidateName);
         require(index != uint(-1));
         
-        if(voters[msg.sender].tokensUsedPerCandidate.length == 0) // 첫 투표일 경우, 투표 토큰 개수를 모두 0으로 초기화하는 함수
-        {
-            for(uint i = 0; i < candidateNames.length; i++)
-            {
-                voters[msg.sender].tokensUsedPerCandidate.push(0);
-            }
-        }
-        
         require(tokenCountForVote <= voters[msg.sender].tokenBought);
         
         votesReceived[candidateName] += tokenCountForVote;
-        voters[msg.sender].tokensUsedPerCandidate[index] += tokenCountForVote;
         voters[msg.sender].tokenBought -= tokenCountForVote;
     }
     
