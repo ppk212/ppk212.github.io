@@ -311,7 +311,7 @@ function getLink(addr) {
 function getValue() {
   getEther();
   getTokenInfo();
-  setupCandidateRows();
+  getCandidateInfo();
 }
 
 function getEther() {
@@ -343,15 +343,11 @@ function getTokenInfo() {
   });
 }
 
-function setupCandidateRows() {
-  simpleVote.getCandidatesInfo(function(e,r){
-    for(let i=0;i<r.length;i++)
+function getCandidateInfo() {
+  simpleVote.getVotesReceivedFor(function(e,r){
+    for(let i=1;i<=r.length;i++)
     {
-      document.getElementById('candidate-rows').append("" + web3.toUtf8(r[i]) + "");
-      var name = r[i];
-      simpleVote.getVotesReceivedFor(function e,r){
-        document.getElementById(web3.toUtf8(name)).innerHTML = r[i].toString();
-      });
+      document.getElementById('day_votes_' + i).innerHTML = r[i-1].toString();
     }
   });
 }
