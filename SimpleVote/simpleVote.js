@@ -1,5 +1,5 @@
-var contractAddress = '0xCE85626517A41f8208f6aF8F6e178A0008498c72';
-var abi =
+let contractAddress = '0xCE85626517A41f8208f6aF8F6e178A0008498c72';
+let abi =
 [
 	{
 		"constant": false,
@@ -270,12 +270,12 @@ var abi =
 	}
 ];
 
-var simpleVoteContract;
-var simpleVote;
-var accountAddress;
-var currentEtherBalance;
-var currentTokenBalance;
-var tokenPrice;
+let simpleVoteContract;
+let simpleVote;
+let accountAddress;
+let currentEtherBalance;
+let currentTokenBalance;
+let tokenPrice;
 
 window.addEventListener('load', function() {
 
@@ -343,5 +343,29 @@ function getCandidateInfo() {
     {
       document.getElementById('day_votes_' + i).innerHTML = r[i-1].toString();
     }
+  });
+}
+
+function voteForCandidate() {
+  let candidateName = $("#candidate").val();
+  let voteTokens = $("#vote-tokens").val();
+  $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
+  $("#candidate").val("");
+  $("#vote-tokens").val("");
+
+  simpleVote.vote(candidateName, voteTokens, function (e, r){
+    getCandidateInfo();
+  });
+}
+
+function buyTokens() {
+  let tokensToBuy = $("#buy").val();
+  let price = tokensToBuy * tokenPrice;
+  $("#buy-msg").html("Purchase order has been submitted. Please wait.");
+
+  simpleVote.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}, function(v) {
+    web3.eth.getBalance(simpleVote.address, function(e, r) {
+    $("#contract-balance").html(web3.fromWei(result.toString()) + " ETH");
+   });
   });
 }
