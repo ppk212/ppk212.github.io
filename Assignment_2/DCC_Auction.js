@@ -255,8 +255,8 @@ let abi =
 	}
 ];
 
-let simpleVoteContract;
-let simpleVote;
+let dcc_auctionContract;
+let dcc_auction;
 let accountAddress;
 let currentEtherBalance;
 let currentTokenBalance;
@@ -278,8 +278,8 @@ window.addEventListener('load', function() {
 });
 
 function startApp() {
-  simpleVoteContract = web3.eth.contract(abi);
-  simpleVote = simpleVoteContract.at(contractAddress);
+  dcc_auctionContract = web3.eth.contract(abi);
+  dcc_auction = dcc_auctionContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
 
   web3.eth.getAccounts(function(e,r){
@@ -307,34 +307,19 @@ function getEther() {
 }
 
 function getToken() {
-  simpleVote.getTokenBought(function(e,r){
+  dcc_auction.getTokenBought(function(e,r){
     document.getElementById('tokenValue').innerHTML = r.toString();
   });
 }
 
 function getTokenInfo() {
 
-  simpleVote.getTotalToken(function(e,r){
-    document.getElementById('tokens-total').innerHTML = r.toString();
-  });
-  simpleVote.getBalanceTokens(function(e,r){
-    document.getElementById('tokens-sellable').innerHTML = r.toString();
-  });
-  simpleVote.getTokenPrice(function(e,r){
+  dcc_auction.getTokenPrice(function(e,r){
     tokenPrice = parseFloat(web3.fromWei(r.toString()));
     document.getElementById('token-cost').innerHTML = tokenPrice + "ETH";
   });
-  web3.eth.getBalance(simpleVote.address, function(e,v) {
+  web3.eth.getBalance(dcc_auction.address, function(e,v) {
     document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
-  });
-}
-
-function getCandidateInfo() {
-  simpleVote.getVotesReceivedFor(function(e,r){
-    for(let i=1;i<=r.length;i++)
-    {
-      document.getElementById('day_votes_' + i).innerHTML = r[i-1].toString();
-    }
   });
 }
 
@@ -355,8 +340,8 @@ function buyTokens() {
   let price = tokensToBuy * tokenPrice;
   $("#buy-msg").html("Purchase order has been submitted. Please wait.");
 
-  simpleVote.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}, function(v) {
-    web3.eth.getBalance(simpleVote.address, function(e, r) {
+  dcc_auction.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}, function(v) {
+    web3.eth.getBalance(dcc_auction.address, function(e, r) {
     $("#contract-balance").html(web3.fromWei(r.toString()) + " ETH");
    });
   });
