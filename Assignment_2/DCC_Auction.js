@@ -342,7 +342,7 @@ function getProductInfo() {
 	});
 }
 
-function voteForProduct(int num) {
+function voteForProduct(num) {
   let productName;
 	let voteTokens;
 	switch (num) {
