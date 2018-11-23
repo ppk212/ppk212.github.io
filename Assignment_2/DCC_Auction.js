@@ -325,20 +325,20 @@ function getTokenInfo() {
 
 function getProductInfo() {
 	dcc_auction.getVotesReceivedHighestFor(function(e,r){
-		$("#highest_iphone7").val(r[0].toString());
-		$("#highest_iphone8").val(r[1].toString());
-		$("#highest_iphoneX").val(r[2].toString());
-		$("#highest_galaxyS9").val(r[3].toString());
-		$("#highest_galaxyNote9").val(r[4].toString());
-		$("#highest_LGG7").val(r[5].toString());
+		document.getElementById('highest_iphone7').innerHTML = r[0].toString();
+		document.getElementById('highest_iphone8').innerHTML = r[1].toString();
+		document.getElementById('highest_iphoneX').innerHTML = r[2].toString();
+		document.getElementById('highest_galaxyS9').innerHTML = r[3].toString();
+		document.getElementById('highest_galaxyNote9').innerHTML = r[4].toString();
+		document.getElementById('highest_LGG7').innerHTML = r[5].toString();
 	});
 	dcc_auction.getVotesReceivedMyselfFor(function(e,r){
-		$("#myself_iphone7").val(r[0].toString());
-		$("#myself_iphone8").val(r[1].toString());
-		$("#myself_iphoneX").val(r[2].toString());
-		$("#myself_galaxyS9").val(r[3].toString());
-		$("#myself_galaxyNote9").val(r[4].toString());
-		$("#myself_LGG7").val(r[5].toString());
+		document.getElementById('myself_iphone7').innerHTML = r[0].toString();
+		document.getElementById('myself_iphone8').innerHTML = r[1].toString();
+		document.getElementById('myself_iphoneX').innerHTML = r[2].toString();
+		document.getElementById('myself_galaxyS9').innerHTML = r[3].toString();
+		document.getElementById('myself_galaxyNote9').innerHTML = r[4].toString();
+		document.getElementById('myself_LGG7').innerHTML = r[5].toString();
 	});
 }
 
