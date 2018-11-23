@@ -297,7 +297,7 @@ function getValue() {
   getEther();
   getToken();
   getTokenInfo();
-  getCandidateInfo();
+  getProductInfo();
 }
 
 function getEther() {
@@ -323,15 +323,52 @@ function getTokenInfo() {
   });
 }
 
-function voteForCandidate() {
-  let candidateName = $("#candidate").val();
-  let voteTokens = $("#vote-tokens").val();
-  $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
-  $("#candidate").val("");
-  $("#vote-tokens").val("");
+function getProductInfo() {
+	dcc_auction.getVotesReceivedHighestFor(function(e,r){
+		$("#highest_iphone7").val(r[0].toString());
+		$("#highest_iphone8").val(r[1].toString());
+		$("#highest_iphoneX").val(r[2].toString());
+		$("#highest_galaxyS9").val(r[3].toString());
+		$("#highest_galaxyNote9").val(r[4].toString());
+		$("#highest_LGG7").val(r[5].toString());
+	});
+	dcc_auction.getVotesReceivedMyselfFor(function(e,r){
+		$("#myself_iphone7").val(r[0].toString());
+		$("#myself_iphone8").val(r[1].toString());
+		$("#myself_iphoneX").val(r[2].toString());
+		$("#myself_galaxyS9").val(r[3].toString());
+		$("#myself_galaxyNote9").val(r[4].toString());
+		$("#myself_LGG7").val(r[5].toString());
+	});
+}
 
-  dcc_auction.vote(candidateName, voteTokens, function (e, r){
-    getCandidateInfo();
+function voteForCandidate(int num) {
+  let productName;
+	let voteTokens;
+	switch (num) {
+		case 0: productName="iphone7";
+						voteTokens=$("#tb_iphone7").val();
+		break;
+		case 1: productName="iphone8";
+						voteTokens=$("#tb_iphone8").val();
+		break;
+		case 2: productName="iphoneX";
+						voteTokens=$("#tb_iphoneX").val();
+		break;
+		case 3: productName="galaxyS9";
+						voteTokens=$("#tb_galaxyS9").val();
+		break;
+		case 4: productName="galaxyNote9";
+						voteTokens=$("#tb_galaxyNote9").val();
+		break;
+		case 5: productName="LGG7";
+						voteTokens=$("#tb_LGG7").val();
+		break;
+		default: productName=""; break;
+	}
+
+  dcc_auction.vote(productName, voteTokens, function (e, r){
+    getProductInfo();
   });
 }
 
