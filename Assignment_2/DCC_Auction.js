@@ -330,7 +330,7 @@ function voteForCandidate() {
   $("#candidate").val("");
   $("#vote-tokens").val("");
 
-  simpleVote.vote(candidateName, voteTokens, function (e, r){
+  dcc_auction.vote(candidateName, voteTokens, function (e, r){
     getCandidateInfo();
   });
 }
