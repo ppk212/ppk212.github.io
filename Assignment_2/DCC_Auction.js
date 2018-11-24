@@ -1,4 +1,4 @@
-let contractAddress = '0x20076185d32bE86dE92A51bd6399347e1c68e49b';
+let contractAddress = '0x37eB8eef380A4405545e3e02BD0c0172BA1D6e59';
 let abi =
 [
 	{
@@ -102,6 +102,25 @@ let abi =
 		"inputs": [
 			{
 				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "buyers",
+		"outputs": [
+			{
+				"name": "buyerAddress",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
 				"type": "bytes32"
 			}
 		],
@@ -169,25 +188,6 @@ let abi =
 		],
 		"payable": true,
 		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "votesReceivedMyself",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
