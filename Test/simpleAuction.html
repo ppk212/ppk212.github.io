@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Simple Auction App</title>
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+ <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+ <style>
+ </style>
+</head>
+<body class="row">
+ <h1 class="text-center banner">DCC Auction (Ropsten Testnet)</h1>
+ <div class="container">
+  <div class="row margin-top-3">
+   <div class="col-sm-12">
+    <ul>
+      <li>Contract Address : <span id="contractAddr"></span></li>
+      <p>
+      <li>Account Address : <span id="accountAddr"></span></li>
+      </p>
+      <li>Holding ETH Count : <span id="ethValue"></span></li>
+      <p></p>
+      <li>Holding Token Count : <span id="tokenValue"></span></li>
+    </ul>
+   </div>
+  </div>
+  <div class="row margin-top-3">
+   <div class="col-sm-12">
+    <div class="col-sm-4">
+		<img class="img-responsive" src="StarryNight.jpg">
+		<h3>The Starry Night</h3>
+		<ul style="padding-left: 1.2em">
+			<li>Highest : <span id="item_highest_1"></span></li>
+			<li>My bid : <span id="item_bid_1"></span></li>
+		</ul>
+		<div id="bid-msg-1"></div>
+		<input type="text" id="bid_token_1" class="col-sm-8" placeholder="Number of tokens to bid"/>		
+	    <a href="#" onclick="bidForItem(1,'StarryNight'); return false;" class="btn btn-primary">Bid</a>
+    </div>
+    <div class="col-sm-4">
+		<img class="img-responsive" src="Kiss.jpg">	
+		<h3>The Kiss</h3>
+		<ul style="padding-left: 1.2em">
+			<li>Highest : <span id="item_highest_2"></span></li>
+			<li>My bid : <span id="item_bid_2"></span></li>
+		</ul>	
+		<div id="bid-msg-2"></div>
+		<input type="text" id="bid_token_2" class="col-sm-8" placeholder="Number of tokens to bid"/>		
+		<a href="#" onclick="bidForItem(2,'Kiss'); return false;" class="btn btn-primary">Bid</a>
+    </div>
+    <div class="col-sm-4">
+		<img class="img-responsive" src="Gleaners.jpg">		
+		<h3>Gleaners</h3>
+		<ul style="padding-left: 1.2em">
+			<li>Highest : <span id="item_highest_3"></span></li>
+			<li>My bid : <span id="item_bid_3"></span></li>
+		</ul>		
+		<div id="bid-msg-3"></div>
+		<input type="text" id="bid_token_3" class="col-sm-8" placeholder="Number of tokens to bid"/>				
+		<a href="#" onclick="bidForItem(3,'Gleaners'); return false;" class="btn btn-primary">Bid</a>
+    </div>	
+   </div>
+   <div class="col-sm-12">
+    <div class="col-sm-4">
+		<img class="img-responsive" src="MonaLisa.jpg">			
+		<h3>Mona Lisa</h3>
+		<ul style="padding-left: 1.2em">
+			<li>Highest : <span id="item_highest_4"></span></li>
+			<li>My bid : <span id="item_bid_4"></span></li>
+		</ul>		
+		<div id="bid-msg-4"></div>
+		<input type="text" id="bid_token_4" class="col-sm-8" placeholder="Number of tokens to bid"/>				
+		<a href="#" onclick="bidForItem(4,'MonaLisa'); return false;" class="btn btn-primary">Bid</a>
+    </div>
+    <div class="col-sm-4">
+		<img class="img-responsive" src="Venus.jpg">				
+		<h3>The birth of Venus</h3>
+		<ul style="padding-left: 1.2em">
+			<li>Highest : <span id="item_highest_5"></span></li>
+			<li>My bid : <span id="item_bid_5"></span></li>
+		</ul>		
+		<div id="bid-msg-5"></div>
+		<input type="text" id="bid_token_5" class="col-sm-8" placeholder="Number of tokens to bid"/>				
+		<a href="#" onclick="bidForItem(5,'Venus'); return false;" class="btn btn-primary">Bid</a>
+    </div>
+    <div class="col-sm-4">
+		<img class="img-responsive" src="LastSupper.jpg">							
+		<h3>The Last Supper</h3>
+		<ul style="padding-left: 1.2em">
+			<li>Highest : <span id="item_highest_6"></span></li>
+			<li>My bid : <span id="item_bid_6"></span></li>
+		</ul>		
+		<div id="bid-msg-6"></div>
+		<input type="text" id="bid_token_6" class="col-sm-8" placeholder="Number of tokens to bid"/>				
+		<a href="#" onclick="bidForItem(6,'LastSupper'); return false;" class="btn btn-primary">Bid</a>
+    </div>	
+   </div>  
+  </div>
+  <hr>
+  <div class="row margin-bottom-3">
+   <div class="col-sm-7">
+    <h2>Tokens</h2>
+    <div class="table-responsive">
+     <table class="table table-bordered">
+      <tr>
+       <th>Tokens Info</th>
+       <th>Value</th>
+      </tr>
+      <tr>
+       <td>Price Per Token</td>
+       <td id="token-cost"></td>
+      </tr>
+      <tr>
+       <td>Token Count In The Contract</td>
+       <td id="contract-balance"></td>
+      </tr>
+     </table>
+    </div>
+   </div>
+   <div class="col-sm-offset-1 col-sm-4">
+    <div class="col-sm-12 form">
+     <h2>Purchase Tokens</h2>
+     <div id="buy-msg"></div>
+     <input type="text" id="buy" class="col-sm-8" placeholder="Number of tokens to buy"/>
+     <a href="#" onclick="buyTokens(); return false;" class="btn btn-primary">Buy</a>
+    </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</body>
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="simpleAuction.js"></script>
+</html>
