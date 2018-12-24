@@ -1,12 +1,12 @@
-let contractAddress = '0xcCff9Ff4A5B0EF812255727d9a075790711f4C88';
+let contractAddress = '0x2881cb1bed2e8ccae4d00f1cb932282e5a416857';
 let abi =
 [
 	{
 		"constant": false,
 		"inputs": [
 			{
-				"name": "itemName",
-				"type": "bytes32"
+				"name": "bidNumber",
+				"type": "uint256"
 			},
 			{
 				"name": "tokenCountForBid",
@@ -36,6 +36,10 @@ let abi =
 	{
 		"inputs": [
 			{
+				"name": "_totalToken",
+				"type": "uint256"
+			},
+			{
 				"name": "_tokenPrice",
 				"type": "uint256"
 			}
@@ -46,13 +50,8 @@ let abi =
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "bidHighest",
+		"inputs": [],
+		"name": "balanceTokens",
 		"outputs": [
 			{
 				"name": "",
@@ -71,10 +70,10 @@ let abi =
 				"type": "address"
 			}
 		],
-		"name": "buyers",
+		"name": "bidders",
 		"outputs": [
 			{
-				"name": "buyderAddress",
+				"name": "bidderAddress",
 				"type": "address"
 			},
 			{
@@ -88,31 +87,8 @@ let abi =
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "curBid",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
 		"inputs": [],
-		"name": "getHighestBid",
+		"name": "getMaxBid",
 		"outputs": [
 			{
 				"name": "",
@@ -134,25 +110,6 @@ let abi =
 				"name": "",
 				"type": "uint256"
 			},
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "itemName",
-				"type": "bytes32"
-			}
-		],
-		"name": "getItemIndex",
-		"outputs": [
 			{
 				"name": "",
 				"type": "uint256"
@@ -226,17 +183,31 @@ let abi =
 	},
 	{
 		"constant": true,
+		"inputs": [],
+		"name": "getTotalToken",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [
 			{
 				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "itemNames",
+		"name": "maxBidPerProduct",
 		"outputs": [
 			{
 				"name": "",
-				"type": "bytes32"
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -256,18 +227,38 @@ let abi =
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "totalToken",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
-]
+];
 
-let simpleAuctionContract;
-let simpleAuction;
+/*
+let simpleVoteContract;
+let simpleVote;
 let accountAddress;
 let currentEtherBalance;
 let currentTokenBalance;
 let tokenPrice;
-
+*/
+let simpleBidContract;
+let simpleBid;
+let accountAddress;
+let currentEtherBalance;
+let currentTokenBalance;
+let tokenPrice;
 window.addEventListener('load', function() {
-
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
   if (typeof web3 !== 'undefined') {
     // Use Mist/MetaMask's provider
@@ -281,9 +272,10 @@ window.addEventListener('load', function() {
   startApp();
 });
 
+/*
 function startApp() {
-  simpleAuctionContract = web3.eth.contract(abi);
-  simpleAuction = simpleAuctionContract.at(contractAddress);
+  simpleVoteContract = web3.eth.contract(abi);
+  simpleVote = simpleVoteContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
 
   web3.eth.getAccounts(function(e,r){
@@ -292,16 +284,39 @@ function startApp() {
   getValue();
   });
 }
-
+*/
+function startApp() {
+    simpleBidContract = web3.eth.contract(abi);
+    simpleBid = simpleBidContract.at(contractAddress);
+    document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
+  
+    web3.eth.getAccounts(function(e,r){
+    document.getElementById('accountAddr').innerHTML = getLink(r[0]);
+    accountAddress = r[0];
+    getValue();
+    first();
+    });
+}
+function first(){
+    simpleBid.getTokenBought(function(e,r){
+        console.log(r['c'][0]);
+        if(r['c'][0] != 0)
+        {
+            getMybid();
+        }
+    });
+}
 function getLink(addr) {
-  return '<a target="_blank" href=https://testnet.etherscan.io/address/' + addr + '>' + addr +'</a>';
+  return '<a target="_blank" href=https://ropsten.etherscan.io/address/' + addr + '>' + addr +'</a>';
 }
 
 function getValue() {
   getEther();
   getToken();
   getTokenInfo();
-  getBidInfo();
+  getBiddingInfo();
+
+  //getCandidateInfo();
 }
 
 function getEther() {
@@ -311,57 +326,99 @@ function getEther() {
 }
 
 function getToken() {
-  simpleAuction.getTokenBought(function(e,r){
+    simpleBid.getTokenBought(function(e,r){
     document.getElementById('tokenValue').innerHTML = r.toString();
   });
 }
 
 function getTokenInfo() {
-  simpleAuction.getTokenPrice(function(e,r){
+
+  /*
+  simpleBid.getTotalToken(function(e,r){
+    document.getElementById('tokens-total').innerHTML = r.toString();
+  });
+  simpleBid.getBalanceTokens(function(e,r){
+    document.getElementById('tokens-sellable').innerHTML = r.toString();
+  });
+  */
+  simpleBid.getTokenPrice(function(e,r){
     tokenPrice = parseFloat(web3.fromWei(r.toString()));
     document.getElementById('token-cost').innerHTML = tokenPrice + "ETH";
   });
-  web3.eth.getBalance(simpleAuction.address, function(e,v) {
+  web3.eth.getBalance(simpleBid.address, function(e,v) {
     document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
   });
 }
-
-function getBidInfo() {
-	// highest
-  simpleAuction.getHighestBid(function(e,r){
+/*
+function getCandidateInfo() {
+  simpleVote.getVotesReceivedFor(function(e,r){
     for(let i=1;i<=r.length;i++)
     {
-      document.getElementById('item_highest_' + i).innerHTML = r[i-1].toString();
+      document.getElementById('day_votes_' + i).innerHTML = r[i-1].toString();
     }
   });
-  // my bid
-   simpleAuction.getMyBid(function(e,r){
-    for(let i=1;i<=r.length;i++)
-    {
-      document.getElementById('item_bid_' + i).innerHTML = r[i-1].toString();
-    }
-  }); 
 }
+*/
+function getBiddingInfo() {
+    simpleBid.getMaxBid(function(e,r){
+        for(let i=0; i<r.length; i++)
+        {
+            document.getElementById('highest_' + i).innerHTML = r[i].toString();
+        }
+    });
+}
+function getMybid() {
+    simpleBid.getMyBid(function(e,r){
+        for(let i=0; i<r.length; i++)
+        {
+            document.getElementById('myself_'+i).innerHTML = r[i].toString();
+        }
+    });
+}
+/*
+function voteForCandidate() {
+  let candidateName = $("#candidate").val();
+  let voteTokens = $("#vote-tokens").val();
+  $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
+  $("#candidate").val("");
+  $("#vote-tokens").val("");
 
-function bidForItem(index, itemName) {
-  let bidTokens = $("#bid_token_" + index).val();
-  $("#bid-msg-" + index).html("Bid has been submitted. The bid count will increment as soon as the bid is recorded on the blockchain. Please wait.")
-  $("#bid_token_" + index).val("");
-	
-  simpleAuction.bid(itemName, bidTokens, function (e, r){
-    getBidInfo();
+  simpleVote.vote(candidateName, voteTokens, function (e, r){
+    getCandidateInfo();
   });
-  
 }
+*/
+function bidForProduct(productnumber){
+    let voteTokens;
+    if(productnumber == 0) 
+        voteTokens = $("#tokenstoBuy0").val();
+    else if(productnumber == 1) 
+        voteTokens = $("#tokenstoBuy1").val();
+    else if(productnumber == 2) 
+        voteTokens = $("#tokenstoBuy2").val();
+    else if(productnumber == 3) 
+        voteTokens = $("#tokenstoBuy3").val();
+    else if(productnumber == 4)  
+        voteTokens = $("#tokenstoBuy4").val();
+    else if(productnumber == 5) 
+        voteTokens = $("#tokenstoBuy5").val();
 
+
+    simpleBid.bid(productnumber,voteTokens, function (e,r){ 
+        getValue();
+
+    });
+}
 function buyTokens() {
-  let tokensToBuy = $("#buy").val();
-  let price = tokensToBuy * tokenPrice;
-  $("#buy-msg").html("Purchase order has been submitted. Please wait.");
+    let tokensToBuy = $("#buy").val();
+    let price = tokensToBuy * tokenPrice;
+    $("#buy-msg").html("Purchase order has been submitted. Please wait.");
 
-  simpleAuction.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}, function(v) {
-    web3.eth.getBalance(simpleAuction.address, function(e, r) {
-    $("#contract-balance").html(web3.fromWei(r.toString()) + " ETH");
-   });
-  });
+    simpleBid.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}, function(v) {
+        web3.eth.getBalance(simpleBid.address, function(e, r) {
+            getValue();
+            getMybid();
+            $("#contract-balance").html(web3.fromWei(r.toString()) + " ETH");
+        });
+    });
 }
