@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>DCC Action</title>
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+ <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+ <style>
+   </style>
+</head>
+<body class="row">
+ <h1 class="text-center banner">DCC Auction (Ropsten Testnet)</h1>
+ <div class="container">
+  <div class="row margin-top-3">
+   <div class="col-sm-6">
+    <ul>
+      <li>Contract Address : <span id="contractAddr"></span></li>
+      <p>
+      <li>Account Address : <span id="accountAddr"></span></li>
+      </p>
+      <li>Holding ETH Count : <span id="ethValue"></span></li>
+      <p></p>
+      <li>Holding Token Count : <span id="tokenValue"></span></li>
+    </ul>
+   </div>
+   <div class="col-sm-3" style="width:400px; height:100px; line-height:100px; color:#666;font-size:50px; text-align:center;" id="clock">
+ 	</div>
+  </div>
+  <div class="row margin-top-3">
+   <div class="col-sm-4">
+    <div>
+
+        <img src="images/iphone7.png" alt="" width="180" height="200"/>
+        <h3>iphone 7</h3>
+        <li>Highest : <span id="highest_iphone7"></span></li>
+        <li>My bid : <span id="myself_iphone7"></span></li>
+        <input type="text" id="tb_iphone7" class="col-sm-8" placeholder="Number of tokens to buy"/>
+        <a href="#" onclick="voteForProduct(0); return false;" class="btn btn-primary">Bid</a>
+
+        <img src="images/Galaxy S9.jpeg" alt="" width="220" height="200"//>
+        <h3>Galaxy S9</h3>
+        <li>Highest : <span id="highest_galaxyS9"></span></li>
+        <li>My bid : <span id="myself_galaxyS9"></span></li>
+        <input type="text" id="tb_galaxyS9" class="col-sm-8" placeholder="Number of tokens to buy"/>
+        <a href="#" onclick="voteForProduct(3); return false;" class="btn btn-primary">Bid</a>
+
+    </div>
+   </div>
+   <div class="col-sm-4">
+    <div>
+        <img src="images/iphone8.jpeg" alt="" width="220" height="200"//>
+        <h3>iphone 8</h3>
+        <li>Highest : <span id="highest_iphone8"></span></li>
+        <li>My bid : <span id="myself_iphone8"></span></li>
+        <input type="text" id="tb_iphone8" class="col-sm-8" placeholder="Number of tokens to buy"/>
+        <a href="#" onclick="voteForProduct(1); return false;" class="btn btn-primary">Bid</a>
+
+        <img src="images/Galaxy Note9.jpg" alt="" width="220" height="200"//>
+        <h3>Galaxy Note 9</h3>
+        <li>Highest : <span id="highest_galaxyNote9"></span></li>
+        <li>My bid : <span id="myself_galaxyNote9"></span></li>
+        <input type="text" id="tb_galaxyNote9" class="col-sm-8" placeholder="Number of tokens to buy"/>
+        <a href="#" onclick="voteForProduct(4); return false;" class="btn btn-primary">Bid</a>
+
+    </div>
+   </div>
+   <div class="col-sm-4">
+    <div>
+
+      <img src="images/iphoneX.jpeg" alt="" width="220" height="200"//>
+      <h3>iphone X</h3>
+      <li>Highest : <span id="highest_iphoneX"></span></li>
+      <li>My bid : <span id="myself_iphoneX"></span></li>
+      <input type="text" id="tb_iphoneX" class="col-sm-8" placeholder="Number of tokens to buy"/>
+      <a href="#" onclick="voteForProduct(2); return false;" class="btn btn-primary">Bid</a>
+
+        <img src="images/LG G7.jpeg" alt="" width="220" height="200"//>
+        <h3>LG G7</h3>
+        <li>Highest : <span id="highest_LGG7"></span></li>
+        <li>My bid : <span id="myself_LGG7"></span></li>
+        <input type="text" id="tb_LGG7" class="col-sm-8" placeholder="Number of tokens to buy"/>
+        <a href="#" onclick="voteForProduct(5); return false;" class="btn btn-primary">Bid</a>
+
+    </div>
+   </div>
+   <div class="col-sm-offset-1 col-sm-4">
+
+   </div>
+  </div>
+  <hr>
+  <div class="row margin-bottom-3">
+   <div class="col-sm-7 form">
+     <h2>Tokens</h2>
+     <div class="table-responsive">
+      <table class="table table-bordered">
+       <tr>
+        <th>Tokens Info</th>
+        <th>Value</th>
+       </tr>
+       <tr>
+        <td>Price Per Token</td>
+        <td id="token-cost"></td>
+       </tr>
+       <tr>
+        <td>Token Count In The Contract</td>
+        <td id="contract-balance"></td>
+       </tr>
+      </table>
+     </div>
+   </div>
+   <div class="col-sm-offset-1 col-sm-4">
+    <div class="col-sm-12 form">
+     <h2>Purchase Tokens</h2>
+     <div id="buy-msg"></div>
+     <input type="text" id="buy" class="col-sm-8" placeholder="Number of tokens to buy"/>
+     <a href="#" onclick="buyTokens(); return false;" class="btn btn-primary">Buy</a>
+    </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</body>
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="DCC_Auction.js"></script>
+</html>
