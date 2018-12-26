@@ -1,342 +1,262 @@
-let contractAddress = '0xf7139e1edcfe33f944b09fea5c168e1ace782432';
+let contractAddress = '0x3359bcbea3ee5d0c63871c39bc4d3f225fc63794';
 let abi =
 [
 	{
-		"constant": false,
-		"inputs": [],
-		"name": "buy",
-		"outputs": [
+	    "constant": true,
+	    "inputs": [
 			{
-				"name": "",
-				"type": "int256"
+			    "name": "",
+			    "type": "bytes32"
 			}
-		],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
+	    ],
+	    "name": "heighestVotesReceived",
+	    "outputs": [
+			{
+			    "name": "",
+			    "type": "uint256"
+			}
+	    ],
+	    "payable": false,
+	    "stateMutability": "view",
+	    "type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
+	    "constant": true,
+	    "inputs": [],
+	    "name": "getTokenPrice",
+	    "outputs": [
 			{
-				"name": "candidateName",
-				"type": "bytes32"
+			    "name": "",
+			    "type": "uint256"
+			}
+	    ],
+	    "payable": false,
+	    "stateMutability": "view",
+	    "type": "function"
+	},
+	{
+	    "constant": true,
+	    "inputs": [],
+	    "name": "tokenPrice",
+	    "outputs": [
+			{
+			    "name": "",
+			    "type": "uint256"
+			}
+	    ],
+	    "payable": false,
+	    "stateMutability": "view",
+	    "type": "function"
+	},
+	{
+	    "constant": true,
+	    "inputs": [
+			{
+			    "name": "candidate",
+			    "type": "bytes32"
+			}
+	    ],
+	    "name": "getCandidateIndex",
+	    "outputs": [
+			{
+			    "name": "",
+			    "type": "uint256"
+			}
+	    ],
+	    "payable": false,
+	    "stateMutability": "view",
+	    "type": "function"
+	},
+	{
+	    "constant": true,
+	    "inputs": [
+			{
+			    "name": "",
+			    "type": "uint256"
+			}
+	    ],
+	    "name": "candidateNames",
+	    "outputs": [
+			{
+			    "name": "",
+			    "type": "bytes32"
+			}
+	    ],
+	    "payable": false,
+	    "stateMutability": "view",
+	    "type": "function"
+	},
+	{
+	    "constant": false,
+	    "inputs": [
+			{
+			    "name": "candidateName",
+			    "type": "bytes32"
 			},
 			{
-				"name": "tokenCountForVote",
-				"type": "uint256"
+			    "name": "tokenCountForVote",
+			    "type": "uint256"
 			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
+	    ],
+	    "name": "vote",
+	    "outputs": [],
+	    "payable": false,
+	    "stateMutability": "nonpayable",
+	    "type": "function"
 	},
 	{
-		"inputs": [
+	    "constant": true,
+	    "inputs": [
 			{
-				"name": "_totalToken",
-				"type": "uint256"
+			    "name": "",
+			    "type": "address"
+			}
+	    ],
+	    "name": "voters",
+	    "outputs": [
+			{
+			    "name": "voterAddress",
+			    "type": "address"
 			},
 			{
-				"name": "_tokenPrice",
-				"type": "uint256"
+			    "name": "tokenBought",
+			    "type": "uint256"
 			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
+	    ],
+	    "payable": false,
+	    "stateMutability": "view",
+	    "type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "balanceTokens",
-		"outputs": [
+	    "constant": true,
+	    "inputs": [],
+	    "name": "getCandidatesInfo",
+	    "outputs": [
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "bytes32[]"
 			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+	    ],
+	    "payable": false,
+	    "stateMutability": "view",
+	    "type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [
+	    "constant": false,
+	    "inputs": [],
+	    "name": "buy",
+	    "outputs": [
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "int256"
 			}
-		],
-		"name": "candidateNames",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+	    ],
+	    "payable": true,
+	    "stateMutability": "payable",
+	    "type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "getBalanceTokens",
-		"outputs": [
+	    "constant": true,
+	    "inputs": [],
+	    "name": "getMyVotes",
+	    "outputs": [
 			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "candidate",
-				"type": "bytes32"
-			}
-		],
-		"name": "getCandidateIndex",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getCandidatesInfo",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTokenBought",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTokenPrice",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTotalToken",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getVotesHighestFor",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+	    ],
+	    "payable": false,
+	    "stateMutability": "view",
+	    "type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "getVotesReceivedFor",
-		"outputs": [
+	    "constant": true,
+	    "inputs": [],
+	    "name": "getHeighestVotesReceivedFor",
+	    "outputs": [
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			},
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+	    ],
+	    "payable": false,
+	    "stateMutability": "view",
+	    "type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "tokenPrice",
-		"outputs": [
+	    "constant": true,
+	    "inputs": [],
+	    "name": "getTokenBought",
+	    "outputs": [
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "",
+			    "type": "uint256"
 			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+	    ],
+	    "payable": false,
+	    "stateMutability": "view",
+	    "type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "totalToken",
-		"outputs": [
+	    "inputs": [
 			{
-				"name": "",
-				"type": "uint256"
+			    "name": "_tokenPrice",
+			    "type": "uint256"
 			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "voters",
-		"outputs": [
-			{
-				"name": "voterAddress",
-				"type": "address"
-			},
-			{
-				"name": "tokenBought",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "votesHighest",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "votesReceived",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+	    ],
+	    "payable": false,
+	    "stateMutability": "nonpayable",
+	    "type": "constructor"
 	}
 ];
 
-let simpleVoteContract;
-let simpleVote;
+let dccAuctionContract;
+let dccAuction;
 let accountAddress;
 let currentEtherBalance;
 let currentTokenBalance;
 let tokenPrice;
-
-var candidateNames = new Array();
+let candidates = ["iphone7", "iphone8", "iphoneX", "galaxyS9", "galaxyNote9", "LGG7"];
 
 window.addEventListener('load', function() {
 
@@ -354,8 +274,8 @@ window.addEventListener('load', function() {
 });
 
 function startApp() {
-  simpleVoteContract = web3.eth.contract(abi);
-  simpleVote = simpleVoteContract.at(contractAddress);
+  dccAuctionContract = web3.eth.contract(abi);
+  dccAuction = dccAuctionContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
 
   web3.eth.getAccounts(function(e,r){
@@ -373,7 +293,6 @@ function getValue() {
   getEther();
   getToken();
   getTokenInfo();
-  getCandidateNames();
   getCandidateInfo();
 }
 
@@ -384,70 +303,44 @@ function getEther() {
 }
 
 function getToken() {
-  simpleVote.getTokenBought(function(e,r){
+    dccAuction.getTokenBought(function (e, r) {
     document.getElementById('tokenValue').innerHTML = r.toString();
   });
 }
 
 function getTokenInfo() {
-
-//  simpleVote.getTotalToken(function(e,r){
-//    document.getElementById('tokens-total').innerHTML = r.toString();
-//  });
-//  simpleVote.getBalanceTokens(function(e,r){
-//    document.getElementById('tokens-sellable').innerHTML = r.toString();
-//  });
-  simpleVote.getTokenPrice(function(e,r){
+    dccAuction.getTokenPrice(function (e, r) {
     tokenPrice = parseFloat(web3.fromWei(r.toString()));
     document.getElementById('token-cost').innerHTML = tokenPrice + "ETH";
   });
-  web3.eth.getBalance(simpleVote.address, function(e,v) {
+    web3.eth.getBalance(dccAuction.address, function (e, v) {
     document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
   });
 }
 
-function getCandidateNames() {
-	simpleVote.getCandidatesInfo(function(e,r){
-		for(let i=0; i<r.length; i++)
-		{
-			candidateNames[i] = r[i].toString();
-		}
-	});
-}
-
 function getCandidateInfo() {
-	simpleVote.getCandidatesInfo(function(e,r){
-		for(let i=0; i<r.length; i++)
-		{
-			candidateNames[i] = r[i].toString();
-		}
-	});
-  simpleVote.getVotesReceivedFor(function(e,r){
-    for(let i=0;i<r.length;i++)
-    {
-      document.getElementById('myself_' + web3.toUtf8(candidateNames[i])).innerHTML = r[i].toString();
+    dccAuction.getHeighestVotesReceivedFor(function (e, r) {
+      for (let i = 0; i < r.length; i++)
+      {
+        document.getElementById('highest_' + candidates[i]).innerHTML = r[i].toString();
     }
   });
-  simpleVote.getVotesHighestFor(function(e,r){
-    for(let i=0;i<r.length;i++)
-    {
-      document.getElementById('highest_' + web3.toUtf8(candidateNames[i])).innerHTML = r[i].toString();
-    }
-  });
+    dccAuction.getMyVotes(function (e, r)
+  {
+      for(let i = 0; i < r.length; i++)
+      {
+          document.getElementById('myself_' + candidates[i]).innerHTML = r[i].toString();
+      }
+  })
 }
-
 
 function voteForProduct(index) {
-  let candidateName = web3.toUtf8(candidateNames[index]);
-  let voteTokens = $("#tb_" + web3.toUtf8(candidateNames[index])).val();
-//let voteTokens = $("#vote-tokens").val();
-  $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
-//  $("#candidate").val("");
-//  $("#vote-tokens").val("");
-  $("#tb_" + candidateNames[index]).val("");
+    let voteId = '#tb_' + candidates[index];
+    let voteTokens = $(voteId).val();
+    $(voteId).val("");
 
-  simpleVote.vote(candidateName, voteTokens, function (e, r){
-    getCandidateInfo();
+  dccAuction.vote(candidates[index], voteTokens, function (e, r) {
+    getValue();
   });
 }
 
@@ -456,9 +349,10 @@ function buyTokens() {
   let price = tokensToBuy * tokenPrice;
   $("#buy-msg").html("Purchase order has been submitted. Please wait.");
 
-  simpleVote.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}, function(v) {
-    web3.eth.getBalance(simpleVote.address, function(e, r) {
-    $("#contract-balance").html(web3.fromWei(r.toString()) + " ETH");
+  dccAuction.buy({ value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0] }, function (v) {
+      web3.eth.getBalance(dccAuction.address, function (e, r) {
+          $("#contract-balance").html(web3.fromWei(r.toString()) + " ETH");
+          getValue();
    });
   });
 }
