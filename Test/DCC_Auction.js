@@ -1,24 +1,6 @@
-let contractAddress = '0xcCff9Ff4A5B0EF812255727d9a075790711f4C88';
+let contractAddress = '0xf7139e1edcfe33f944b09fea5c168e1ace782432';
 let abi =
 [
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "itemName",
-				"type": "bytes32"
-			},
-			{
-				"name": "tokenCountForBid",
-				"type": "uint256"
-			}
-		],
-		"name": "bid",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
 	{
 		"constant": false,
 		"inputs": [],
@@ -34,7 +16,29 @@ let abi =
 		"type": "function"
 	},
 	{
+		"constant": false,
 		"inputs": [
+			{
+				"name": "candidateName",
+				"type": "bytes32"
+			},
+			{
+				"name": "tokenCountForVote",
+				"type": "uint256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_totalToken",
+				"type": "uint256"
+			},
 			{
 				"name": "_tokenPrice",
 				"type": "uint256"
@@ -46,13 +50,8 @@ let abi =
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"name": "bidHighest",
+		"inputs": [],
+		"name": "balanceTokens",
 		"outputs": [
 			{
 				"name": "",
@@ -68,17 +67,27 @@ let abi =
 		"inputs": [
 			{
 				"name": "",
-				"type": "address"
+				"type": "uint256"
 			}
 		],
-		"name": "buyers",
+		"name": "candidateNames",
 		"outputs": [
 			{
-				"name": "buyderAddress",
-				"type": "address"
-			},
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getBalanceTokens",
+		"outputs": [
 			{
-				"name": "tokenBought",
+				"name": "",
 				"type": "uint256"
 			}
 		],
@@ -90,15 +99,11 @@ let abi =
 		"constant": true,
 		"inputs": [
 			{
-				"name": "",
+				"name": "candidate",
 				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "address"
 			}
 		],
-		"name": "curBid",
+		"name": "getCandidateIndex",
 		"outputs": [
 			{
 				"name": "",
@@ -112,84 +117,11 @@ let abi =
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "getHighestBid",
+		"name": "getCandidatesInfo",
 		"outputs": [
 			{
 				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "itemName",
-				"type": "bytes32"
-			}
-		],
-		"name": "getItemIndex",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getMyBid",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
+				"type": "bytes32[]"
 			}
 		],
 		"payable": false,
@@ -226,17 +158,80 @@ let abi =
 	},
 	{
 		"constant": true,
-		"inputs": [
+		"inputs": [],
+		"name": "getTotalToken",
+		"outputs": [
 			{
 				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "itemNames",
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getVotesHighestFor",
 		"outputs": [
 			{
 				"name": "",
-				"type": "bytes32"
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getVotesReceivedFor",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -256,15 +251,92 @@ let abi =
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "totalToken",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "voters",
+		"outputs": [
+			{
+				"name": "voterAddress",
+				"type": "address"
+			},
+			{
+				"name": "tokenBought",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"name": "votesHighest",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"name": "votesReceived",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
-]
+];
 
-let simpleAuctionContract;
-let simpleAuction;
+let simpleVoteContract;
+let simpleVote;
 let accountAddress;
 let currentEtherBalance;
 let currentTokenBalance;
 let tokenPrice;
+
+var candidateNames = new Array();
 
 window.addEventListener('load', function() {
 
@@ -282,8 +354,8 @@ window.addEventListener('load', function() {
 });
 
 function startApp() {
-  simpleAuctionContract = web3.eth.contract(abi);
-  simpleAuction = simpleAuctionContract.at(contractAddress);
+  simpleVoteContract = web3.eth.contract(abi);
+  simpleVote = simpleVoteContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
 
   web3.eth.getAccounts(function(e,r){
@@ -301,7 +373,8 @@ function getValue() {
   getEther();
   getToken();
   getTokenInfo();
-  getBidInfo();
+  getCandidateNames();
+  getCandidateInfo();
 }
 
 function getEther() {
@@ -311,47 +384,71 @@ function getEther() {
 }
 
 function getToken() {
-  simpleAuction.getTokenBought(function(e,r){
+  simpleVote.getTokenBought(function(e,r){
     document.getElementById('tokenValue').innerHTML = r.toString();
   });
 }
 
 function getTokenInfo() {
-  simpleAuction.getTokenPrice(function(e,r){
+
+//  simpleVote.getTotalToken(function(e,r){
+//    document.getElementById('tokens-total').innerHTML = r.toString();
+//  });
+//  simpleVote.getBalanceTokens(function(e,r){
+//    document.getElementById('tokens-sellable').innerHTML = r.toString();
+//  });
+  simpleVote.getTokenPrice(function(e,r){
     tokenPrice = parseFloat(web3.fromWei(r.toString()));
     document.getElementById('token-cost').innerHTML = tokenPrice + "ETH";
   });
-  web3.eth.getBalance(simpleAuction.address, function(e,v) {
+  web3.eth.getBalance(simpleVote.address, function(e,v) {
     document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
   });
 }
 
-function getBidInfo() {
-	// highest
-  simpleAuction.getHighestBid(function(e,r){
-    for(let i=1;i<=r.length;i++)
-    {
-      document.getElementById('item_highest_' + i).innerHTML = r[i-1].toString();
-    }
-  });
-  // my bid
-   simpleAuction.getMyBid(function(e,r){
-    for(let i=1;i<=r.length;i++)
-    {
-      document.getElementById('item_bid_' + i).innerHTML = r[i-1].toString();
-    }
-  }); 
+function getCandidateNames() {
+	simpleVote.getCandidatesInfo(function(e,r){
+		for(let i=0; i<r.length; i++)
+		{
+			candidateNames[i] = r[i].toString();
+		}
+	});
 }
 
-function bidForItem(index, itemName) {
-  let bidTokens = $("#bid_token_" + index).val();
-  $("#bid-msg-" + index).html("Bid has been submitted. The bid count will increment as soon as the bid is recorded on the blockchain. Please wait.")
-  $("#bid_token_" + index).val("");
-	
-  simpleAuction.bid(itemName, bidTokens, function (e, r){
-    getBidInfo();
+function getCandidateInfo() {
+	simpleVote.getCandidatesInfo(function(e,r){
+		for(let i=0; i<r.length; i++)
+		{
+			candidateNames[i] = r[i].toString();
+		}
+	});
+  simpleVote.getVotesReceivedFor(function(e,r){
+    for(let i=0;i<r.length;i++)
+    {
+      document.getElementById('myself_' + web3.toUtf8(candidateNames[i])).innerHTML = r[i].toString();
+    }
   });
-  
+  simpleVote.getVotesHighestFor(function(e,r){
+    for(let i=0;i<r.length;i++)
+    {
+      document.getElementById('highest_' + web3.toUtf8(candidateNames[i])).innerHTML = r[i].toString();
+    }
+  });
+}
+
+
+function voteForProduct(index) {
+  let candidateName = web3.toUtf8(candidateNames[index]);
+  let voteTokens = $("#tb_" + web3.toUtf8(candidateNames[index])).val();
+//let voteTokens = $("#vote-tokens").val();
+  $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
+//  $("#candidate").val("");
+//  $("#vote-tokens").val("");
+  $("#tb_" + candidateNames[index]).val("");
+
+  simpleVote.vote(candidateName, voteTokens, function (e, r){
+    getCandidateInfo();
+  });
 }
 
 function buyTokens() {
@@ -359,8 +456,8 @@ function buyTokens() {
   let price = tokensToBuy * tokenPrice;
   $("#buy-msg").html("Purchase order has been submitted. Please wait.");
 
-  simpleAuction.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}, function(v) {
-    web3.eth.getBalance(simpleAuction.address, function(e, r) {
+  simpleVote.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}, function(v) {
+    web3.eth.getBalance(simpleVote.address, function(e, r) {
     $("#contract-balance").html(web3.fromWei(r.toString()) + " ETH");
    });
   });
