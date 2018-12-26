@@ -366,11 +366,11 @@ function getHighestBid() {
 
 function bidForProduct(n) {
 
-	let AuctionTokens = $("#tb_"+getName[i]).val();
-	let highestTokens = $("#highest_"+getName[i]).val();
+	let AuctionTokens = $("#tb_"+getName[n]).val();
+	let highestTokens = $("#highest_"+getName[n]).val();
 
 	$("#msg").html("Auction has been submitted. The Auction count will increment as soon as the Auction is recorded on the blockchain. Please wait.")
-	$("#tb_"+getName[i]).val("");
+	$("#tb_"+getName[n]).val("");
 
 	simpleAuction.Auction(n, AuctionTokens, function (e, r){
 		getHighestBid();
