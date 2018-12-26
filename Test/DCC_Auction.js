@@ -1,262 +1,243 @@
-let contractAddress = '0x73df6771d59b4f8da614efefc019655d3ca48c15';
-let abi =
-[
+let contractAddress = '0xdec7d763e7a4430d91897253181a38a1a8c673dd';
+let abi = [
 	{
-	    "constant": true,
-	    "inputs": [
+		"constant": false,
+		"inputs": [
 			{
-			    "name": "",
-			    "type": "bytes32"
-			}
-	    ],
-	    "name": "heighestVotesReceived",
-	    "outputs": [
-			{
-			    "name": "",
-			    "type": "uint256"
-			}
-	    ],
-	    "payable": false,
-	    "stateMutability": "view",
-	    "type": "function"
-	},
-	{
-	    "constant": true,
-	    "inputs": [],
-	    "name": "getTokenPrice",
-	    "outputs": [
-			{
-			    "name": "",
-			    "type": "uint256"
-			}
-	    ],
-	    "payable": false,
-	    "stateMutability": "view",
-	    "type": "function"
-	},
-	{
-	    "constant": true,
-	    "inputs": [],
-	    "name": "tokenPrice",
-	    "outputs": [
-			{
-			    "name": "",
-			    "type": "uint256"
-			}
-	    ],
-	    "payable": false,
-	    "stateMutability": "view",
-	    "type": "function"
-	},
-	{
-	    "constant": true,
-	    "inputs": [
-			{
-			    "name": "candidate",
-			    "type": "bytes32"
-			}
-	    ],
-	    "name": "getCandidateIndex",
-	    "outputs": [
-			{
-			    "name": "",
-			    "type": "uint256"
-			}
-	    ],
-	    "payable": false,
-	    "stateMutability": "view",
-	    "type": "function"
-	},
-	{
-	    "constant": true,
-	    "inputs": [
-			{
-			    "name": "",
-			    "type": "uint256"
-			}
-	    ],
-	    "name": "candidateNames",
-	    "outputs": [
-			{
-			    "name": "",
-			    "type": "bytes32"
-			}
-	    ],
-	    "payable": false,
-	    "stateMutability": "view",
-	    "type": "function"
-	},
-	{
-	    "constant": false,
-	    "inputs": [
-			{
-			    "name": "candidateName",
-			    "type": "bytes32"
+				"name": "itemName",
+				"type": "bytes32"
 			},
 			{
-			    "name": "tokenCountForVote",
-			    "type": "uint256"
+				"name": "tokens",
+				"type": "uint256"
 			}
-	    ],
-	    "name": "vote",
-	    "outputs": [],
-	    "payable": false,
-	    "stateMutability": "nonpayable",
-	    "type": "function"
+		],
+		"name": "bid",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
-	    "constant": true,
-	    "inputs": [
-			{
-			    "name": "",
-			    "type": "address"
-			}
-	    ],
-	    "name": "voters",
-	    "outputs": [
-			{
-			    "name": "voterAddress",
-			    "type": "address"
-			},
-			{
-			    "name": "tokenBought",
-			    "type": "uint256"
-			}
-	    ],
-	    "payable": false,
-	    "stateMutability": "view",
-	    "type": "function"
+		"constant": false,
+		"inputs": [],
+		"name": "buy",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
 	},
 	{
-	    "constant": true,
-	    "inputs": [],
-	    "name": "getCandidatesInfo",
-	    "outputs": [
+		"inputs": [
 			{
-			    "name": "",
-			    "type": "bytes32[]"
+				"name": "_tokenPrice",
+				"type": "uint256"
 			}
-	    ],
-	    "payable": false,
-	    "stateMutability": "view",
-	    "type": "function"
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
-	    "constant": false,
-	    "inputs": [],
-	    "name": "buy",
-	    "outputs": [
+		"constant": true,
+		"inputs": [
 			{
-			    "name": "",
-			    "type": "int256"
+				"name": "",
+				"type": "address"
 			}
-	    ],
-	    "payable": true,
-	    "stateMutability": "payable",
-	    "type": "function"
+		],
+		"name": "buyers",
+		"outputs": [
+			{
+				"name": "addr",
+				"type": "address"
+			},
+			{
+				"name": "tokens",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
-	    "constant": true,
-	    "inputs": [],
-	    "name": "getMyVotes",
-	    "outputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "getHighestPrice",
+		"outputs": [
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			},
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			},
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			},
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			},
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			},
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			}
-	    ],
-	    "payable": false,
-	    "stateMutability": "view",
-	    "type": "function"
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
-	    "constant": true,
-	    "inputs": [],
-	    "name": "getHeighestVotesReceivedFor",
-	    "outputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "getMyBid",
+		"outputs": [
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			},
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			},
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			},
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			},
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			},
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			}
-	    ],
-	    "payable": false,
-	    "stateMutability": "view",
-	    "type": "function"
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
-	    "constant": true,
-	    "inputs": [],
-	    "name": "getTokenBought",
-	    "outputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "getTokenBought",
+		"outputs": [
 			{
-			    "name": "",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			}
-	    ],
-	    "payable": false,
-	    "stateMutability": "view",
-	    "type": "function"
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
-	    "inputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "getTokenPrice",
+		"outputs": [
 			{
-			    "name": "_tokenPrice",
-			    "type": "uint256"
+				"name": "",
+				"type": "uint256"
 			}
-	    ],
-	    "payable": false,
-	    "stateMutability": "nonpayable",
-	    "type": "constructor"
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"name": "highestPrice",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "items",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"name": "myBid",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "tokenPrice",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
-];
+]
 
-let dccAuctionContract;
-let dccAuction;
+let DCCAuctionContract;
+let DCCAuction;
 let accountAddress;
-let currentEtherBalance;
-let currentTokenBalance;
 let tokenPrice;
-let candidates = ["iphone7", "iphone8", "iphoneX", "galaxyS9", "galaxyNote9", "LGG7"];
 
 window.addEventListener('load', function() {
 
@@ -265,7 +246,7 @@ window.addEventListener('load', function() {
     // Use Mist/MetaMask's provider
     window.web3 = new Web3(web3.currentProvider);
   } else {
-    console.log('MetaMask needed')
+    console.log('No web3? You should consider trying MetaMask!')
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
     window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
   }
@@ -274,8 +255,8 @@ window.addEventListener('load', function() {
 });
 
 function startApp() {
-  dccAuctionContract = web3.eth.contract(abi);
-  dccAuction = dccAuctionContract.at(contractAddress);
+  DCCAuctionContract = web3.eth.contract(abi);
+  DCCAuction = DCCAuctionContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
 
   web3.eth.getAccounts(function(e,r){
@@ -283,6 +264,7 @@ function startApp() {
   accountAddress = r[0];
   getValue();
   });
+  getBid();
 }
 
 function getLink(addr) {
@@ -290,57 +272,49 @@ function getLink(addr) {
 }
 
 function getValue() {
-  gEth();
-  gTok();
-  gInfo_t();
-  gInfo_c();
+  getEther();
+  getToken();
+  getTokenInfo();
 }
 
-function gEth() {
+function getBid() {
+    DCCAuction.getHighestPrice(function(e, r) {
+        document.getElementById('highest_iphone7').innerHTML = r[0].toString();
+        document.getElementById('highest_iphone8').innerHTML = r[1].toString();
+        document.getElementById('highest_iphoneX').innerHTML = r[2].toString();
+        document.getElementById('highest_galaxyS9').innerHTML = r[3].toString();
+        document.getElementById('highest_galaxyNote9').innerHTML = r[4].toString();
+        document.getElementById('highest_LGG7').innerHTML = r[5].toString();
+    });
+    DCCAuction.getMyBid(accountAddress, function(e, r) {
+        document.getElementById('myself_iphone7').innerHTML = r[0].toString();
+        document.getElementById('myself_iphone8').innerHTML = r[1].toString();
+        document.getElementById('myself_iphoneX').innerHTML = r[2].toString();
+        document.getElementById('myself_galaxyS9').innerHTML = r[3].toString();
+        document.getElementById('myself_galaxyNote9').innerHTML = r[4].toString();
+        document.getElementById('myself_LGG7').innerHTML = r[5].toString();
+    });
+}
+
+function getEther() {
   web3.eth.getBalance(accountAddress, function(e,r){
     document.getElementById('ethValue').innerHTML =web3.fromWei(r.toString()) + "ETH";
   });
 }
 
-function gTok() {
-    dccAuction.getTokenBought(function (e, r) {
+function getToken() {
+  DCCAuction.getTokenBought(function(e,r){
     document.getElementById('tokenValue').innerHTML = r.toString();
   });
 }
 
-function gInfo_t() {
-    dccAuction.getTokenPrice(function (e, r) {
+function getTokenInfo() {
+  DCCAuction.getTokenPrice(function(e,r){
     tokenPrice = parseFloat(web3.fromWei(r.toString()));
     document.getElementById('token-cost').innerHTML = tokenPrice + "ETH";
   });
-    web3.eth.getBalance(dccAuction.address, function (e, v) {
+  web3.eth.getBalance(DCCAuction.address, function(e,v) {
     document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
-  });
-}
-
-function gInfo_c() {
-    dccAuction.getHeighestVotesReceivedFor(function (e, r) {
-      for (let i = 0; i < r.length; i++)
-      {
-        document.getElementById('highest_' + candidates[i]).innerHTML = r[i].toString();
-    }
-  });
-    dccAuction.getMyVotes(function (e, r)
-  {
-      for(let i = 0; i < r.length; i++)
-      {
-          document.getElementById('myself_' + candidates[i]).innerHTML = r[i].toString();
-      }
-  })
-}
-
-function voting(index) {
-    let voteId = '#tb_' + candidates[index];
-    let voteTokens = $(voteId).val();
-    $(voteId).val("");
-
-  dccAuction.vote(candidates[index], voteTokens, function (e, r) {
-    getValue();
   });
 }
 
@@ -349,10 +323,40 @@ function buyTokens() {
   let price = tokensToBuy * tokenPrice;
   $("#buy-msg").html("Purchase order has been submitted. Please wait.");
 
-  dccAuction.buy({ value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0] }, function (v) {
-      web3.eth.getBalance(dccAuction.address, function (e, r) {
-          $("#contract-balance").html(web3.fromWei(r.toString()) + " ETH");
-          getValue();
+  DCCAuction.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}, function(v) {
+    web3.eth.getBalance(DCCAuction.address, function(e, r) {
+    $("#contract-balance").html(web3.fromWei(r.toString()) + " ETH");
    });
   });
+}
+
+
+
+function voteForProduct(productNum) {
+
+    switch (productNum) {
+        case 0: // iphone 7
+        DCCAuction.bid("iphone 7", $("#tb_iphone7").val(), function(e, r){});
+        break;
+        
+        case 1: // iphone 8
+        DCCAuction.bid("iphone 8", $("#tb_iphone8").val(), function(e, r){});
+        break;
+        
+        case 2: // iphone X
+        DCCAuction.bid("iphone X", $("#tb_iphoneX").val(), function(e, r){});
+        break;
+        
+        case 3: // Galaxy S9
+        DCCAuction.bid("Galaxy S9", $("#tb_galaxyS9").val(), function(e, r){});
+        break;
+        
+        case 4: // Galaxy Note 9
+        DCCAuction.bid("Galaxy Note 9", $("#tb_galaxyNote9").val(), function(e, r){});
+        break;
+        
+        case 5: // LG G7
+        DCCAuction.bid("LG G7", $("#tb_LGG7").val(), function (e, r) {});
+        break;
+    }
 }
