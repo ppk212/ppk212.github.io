@@ -6,8 +6,10 @@ date: 2019-05-11
 comments: false
 ---
 
-<!--<center><a href="http://taylantatli.github.io/Moon"><b>Moon</b></a> is a minimal, one column jekyll theme.</center>-->
+<figure>
+    <a href="https://ppk212.github.io/assets/img/hslee.jpg"></a>
 </figure>
+
 ## 소개
 * 이름 : 이현수
 * Email : ppk212@naver.com
