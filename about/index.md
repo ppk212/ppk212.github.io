@@ -11,7 +11,7 @@ comments: false
 
 ## 소개
 <figure>
-  <a><img src="https://github.com/ppk212/ppk212.github.io/tree/master/assets/img/hslee.jpg"></a>
+  <a href="https://github.com/ppk212/ppk212.github.io/tree/master/assets/img/hslee.jpg"><img src="https://github.com/ppk212/ppk212.github.io/tree/master/assets/img/hslee.jpg"></a>
 </figure>
 * 이름 : 이현수
 * Email : ppk212@naver.com
