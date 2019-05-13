@@ -7,10 +7,6 @@ comments: false
 ---
 
 <!--<center><a href="http://taylantatli.github.io/Moon"><b>Moon</b></a> is a minimal, one column jekyll theme.</center>-->
-<center> .</center>
-
-<figure>
-  <a href="https://github.com/ppk212/ppk212.github.io/tree/master/assets/img/hslee.jpg"><img src="https://github.com/ppk212/ppk212.github.io/tree/master/assets/img/hslee.jpg"></a>
 </figure>
 ## 소개
 * 이름 : 이현수
