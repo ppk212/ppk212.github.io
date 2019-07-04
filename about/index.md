@@ -7,7 +7,7 @@ comments: false
 ---
 
 <figure>
-    <a href="https://ppk212.github.io/assets/img/hslee.jpg"><img src="https://ppk212.github.io/assets/img/hslee.jpg" width="200"></a>
+    <a href="https://ppk212.github.io/assets/img/hslee.jpg"><img src="https://ppk212.github.io/assets/img/hslee.jpg" width="30" height="100"></a>
 </figure>
 
 ## 소개
