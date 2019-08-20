@@ -19,7 +19,7 @@
       </p>
       <li>Holding ETH Count : <span id="ethValue"></span></li>
       <p></p>
-      <li>Holding Token Count : <span id="tokenValue"></span></li>
+      <li>Holding Ticket Count : <span id="tokenValue"></span></li>
     </ul>
    </div>
   </div>
@@ -69,27 +69,27 @@
     </div>
    </div>
    <div class="col-sm-offset-1 col-sm-4">
-    <h2>Tokens</h2>
+    <h2>Tickets</h2>
     <div class="table-responsive">
      <table class="table table-bordered">
       <tr>
-       <th>Tokens Info</th>
+       <th>Tickets Info</th>
        <th>Value</th>
       </tr>
       <tr>
-       <td>Total Token Count</td>
+       <td>Total Ticket Count</td>
        <td id="tokens-total"></td>
       </tr>
       <tr>
-       <td>Sellable Token Count</td>
+       <td>Sellable Ticket Count</td>
        <td id="tokens-sellable"></td>
       </tr>
       <tr>
-       <td>Price Per Token</td>
+       <td>Price Per Ticket</td>
        <td id="token-cost"></td>
       </tr>
       <tr>
-       <td>Token Count In The Contract</td>
+       <td>Ticket Count In The Contract</td>
        <td id="contract-balance"></td>
       </tr>
      </table>
@@ -104,16 +104,16 @@
     <input type="text" id="candidate" class="form-control" placeholder="Enter the candidate name"/>
     <br>
     <br>
-    <input type="text" id="vote-tokens" class="form-control" placeholder="Total no. of tokens to vote"/>
+    <input type="text" id="vote-tokens" class="form-control" placeholder="Total no. of tickets to vote"/>
     <br>
     <br>
     <a href="#" onclick="voteForCandidate(); return false;" class="btn btn-primary">Vote</a>
    </div>
    <div class="col-sm-offset-1 col-sm-4">
     <div class="col-sm-12 form">
-     <h2>Purchase Tokens</h2>
+     <h2>Purchase Tickets</h2>
      <div id="buy-msg"></div>
-     <input type="text" id="buy" class="col-sm-8" placeholder="Number of tokens to buy"/>
+     <input type="text" id="buy" class="col-sm-8" placeholder="Number of tickets to buy"/>
      <a href="#" onclick="buyTokens(); return false;" class="btn btn-primary">Buy</a>
     </div>
     </div>
