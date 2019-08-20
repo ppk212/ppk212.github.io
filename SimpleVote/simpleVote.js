@@ -333,21 +333,21 @@ function getEther() {
 
 function getToken() {
   simpleVote.getTokenBought(function(e,r){
-    document.getElementById('tokenValue').innerHTML = r.toString();
+    document.getElementById('ticketValue').innerHTML = r.toString();
   });
 }
 
 function getTokenInfo() {
 
   simpleVote.getTotalToken(function(e,r){
-    document.getElementById('tokens-total').innerHTML = r.toString();
+    document.getElementById('tickets-total').innerHTML = r.toString();
   });
   simpleVote.getBalanceTokens(function(e,r){
-    document.getElementById('tokens-sellable').innerHTML = r.toString();
+    document.getElementById('tickets-sellable').innerHTML = r.toString();
   });
   simpleVote.getTokenPrice(function(e,r){
     tokenPrice = parseFloat(web3.fromWei(r.toString()));
-    document.getElementById('token-cost').innerHTML = tokenPrice + "ETH";
+    document.getElementById('ticket-cost').innerHTML = tokenPrice + "ETH";
   });
   web3.eth.getBalance(simpleVote.address, function(e,v) {
     document.getElementById('contract-balance').innerHTML = web3.fromWei(v.toString()) + "ETH";
@@ -365,7 +365,7 @@ function getCandidateInfo() {
 
 function voteForCandidate() {
   let candidateName = $("#candidate").val();
-  let voteTokens = $("#vote-tokens").val();
+  let voteTokens = $("#vote-tickets").val();
   $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
   $("#candidate").val("");
   $("#vote-tokens").val("");
@@ -375,7 +375,7 @@ function voteForCandidate() {
   });
 }
 
-function buyTokens() {
+function buyTickets() {
   let tokensToBuy = $("#buy").val();
   let price = tokensToBuy * tokenPrice;
   $("#buy-msg").html("Purchase order has been submitted. Please wait.");
