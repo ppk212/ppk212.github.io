@@ -1,57 +1,10 @@
-let contractAddress = '0xF41Feb50Cc765A6d0c444f363999d5b73f070c02';
+let contractAddress = '0x285c365063d5d37D86a4eb7b258c0A00fFb58b4E';
 let abi =
 [
 	{
-		"constant": false,
-		"inputs": [],
-		"name": "buy",
-		"outputs": [
-			{
-				"name": "",
-				"type": "int256"
-			}
-		],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "candidateName",
-				"type": "bytes32"
-			},
-			{
-				"name": "tokenCountForVote",
-				"type": "uint256"
-			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"name": "_totalToken",
-				"type": "uint256"
-			},
-			{
-				"name": "_tokenPrice",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
 		"constant": true,
 		"inputs": [],
-		"name": "balanceTokens",
+		"name": "getTotalTicket",
 		"outputs": [
 			{
 				"name": "",
@@ -64,17 +17,12 @@ let abi =
 	},
 	{
 		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "candidateNames",
+		"inputs": [],
+		"name": "getTicketPrice",
 		"outputs": [
 			{
 				"name": "",
-				"type": "bytes32"
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -84,7 +32,7 @@ let abi =
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "getBalanceTokens",
+		"name": "getSellableTicket",
 		"outputs": [
 			{
 				"name": "",
@@ -103,11 +51,11 @@ let abi =
 				"type": "bytes32"
 			}
 		],
-		"name": "getCandidateIndex",
+		"name": "existCandidate",
 		"outputs": [
 			{
 				"name": "",
-				"type": "uint256"
+				"type": "bool"
 			}
 		],
 		"payable": false,
@@ -115,159 +63,50 @@ let abi =
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "getCandidatesInfo",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTokenBought",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTokenPrice",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTotalToken",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getVotesReceivedFor",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "tokenPrice",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "totalToken",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
+		"constant": false,
 		"inputs": [
 			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "voters",
-		"outputs": [
-			{
-				"name": "voterAddress",
-				"type": "address"
-			},
-			{
-				"name": "tokenBought",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
+				"name": "candidate",
 				"type": "bytes32"
+			},
+			{
+				"name": "count",
+				"type": "uint256"
 			}
 		],
-		"name": "votesReceived",
+		"name": "vote",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "buy",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getTicketsReceive",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getTicketsHave",
 		"outputs": [
 			{
 				"name": "",
@@ -277,6 +116,21 @@ let abi =
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "total",
+				"type": "uint256"
+			},
+			{
+				"name": "price",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	}
 ];
 
@@ -332,20 +186,20 @@ function getEther() {
 }
 
 function getToken() {
-  simpleVote.getTokenBought(function(e,r){
+  simpleVote.getTicketsHave(function(e,r){
     document.getElementById('ticketValue').innerHTML = r.toString();
   });
 }
 
 function getTokenInfo() {
 
-  simpleVote.getTotalToken(function(e,r){
+  simpleVote.getTotalTicket(function(e,r){
     document.getElementById('tickets-total').innerHTML = r.toString();
   });
-  simpleVote.getBalanceTokens(function(e,r){
+  simpleVote.getSellableTicket(function(e,r){
     document.getElementById('tickets-sellable').innerHTML = r.toString();
   });
-  simpleVote.getTokenPrice(function(e,r){
+  simpleVote.getTicketPrice(function(e,r){
     tokenPrice = parseFloat(web3.fromWei(r.toString()));
     document.getElementById('ticket-cost').innerHTML = tokenPrice + "ETH";
   });
@@ -355,7 +209,7 @@ function getTokenInfo() {
 }
 
 function getCandidateInfo() {
-  simpleVote.getVotesReceivedFor(function(e,r){
+  simpleVote.getTicketsReceive(function(e,r){
     for(let i=1;i<=r.length;i++)
     {
       document.getElementById('day_votes_' + i).innerHTML = r[i-1].toString();
