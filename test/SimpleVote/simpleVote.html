@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Simple Voting App</title>
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+ <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+ <style>
+   </style>
+</head>
+<body class="row">
+ <h1 class="text-center banner">Simple Voting Application (Ropsten Testnet)</h1>
+ <div class="container">
+  <div class="row margin-top-3">
+   <div class="col-sm-12">
+    <ul>
+      <li>Contract Address : <span id="contractAddr"></span></li>
+      <p>
+      <li>Account Address : <span id="accountAddr"></span></li>
+      </p>
+      <li>Holding ETH Count : <span id="ethValue"></span></li>
+      <p></p>
+      <li>Holding Ticket Count : <span id="ticketValue"></span></li>
+    </ul>
+   </div>
+  </div>
+  <div class="row margin-top-3">
+   <div class="col-sm-7">
+    <h2>Candidates</h2>
+    <div class="table-responsive">
+     <table class="table table-bordered">
+      <thead>
+       <tr>
+        <th>Candidate</th>
+        <th>Votes</th>
+       </tr>
+      </thead>
+      <!--tbody id="candidate-rows"-->
+      <tbody>
+        <tr>
+         <th>Monday</th>
+         <th id="day_votes_1"></th>
+        </tr>
+        <tr>
+         <th>Tuesday</th>
+         <th id="day_votes_2"></th>
+        </tr>
+        <tr>
+         <th>Wednesday</th>
+         <th id="day_votes_3"></th>
+        </tr>
+        <tr>
+         <th>Thursday</th>
+         <th id="day_votes_4"></th>
+        </tr>
+        <tr>
+         <th>Friday</th>
+         <th id="day_votes_5"></th>
+        </tr>
+        <tr>
+         <th>Saturday</th>
+         <th id="day_votes_6"></th>
+        </tr>
+        <tr>
+         <th>Sunday</th>
+         <th id="day_votes_7"></th>
+        </tr>
+      </tbody>
+     </table>
+    </div>
+   </div>
+   <div class="col-sm-offset-1 col-sm-4">
+    <h2>Tickets</h2>
+    <div class="table-responsive">
+     <table class="table table-bordered">
+      <tr>
+       <th>Tickets Info</th>
+       <th>Value</th>
+      </tr>
+      <tr>
+       <td>Total Ticket Count</td>
+       <td id="tickets-total"></td>
+      </tr>
+      <tr>
+       <td>Sellable Ticket Count</td>
+       <td id="tickets-sellable"></td>
+      </tr>
+      <tr>
+       <td>Price Per Ticket</td>
+       <td id="ticket-cost"></td>
+      </tr>
+      <tr>
+       <td>ETH In The Contract</td>
+       <td id="contract-balance"></td>
+      </tr>
+     </table>
+    </div>
+   </div>
+  </div>
+  <hr>
+  <div class="row margin-bottom-3">
+   <div class="col-sm-7 form">
+    <h2>Vote for Candidate</h2>
+    <div id="msg"></div>
+    <input type="text" id="candidate" class="form-control" placeholder="Enter the candidate name"/>
+    <br>
+    <br>
+    <input type="text" id="vote-tickets" class="form-control" placeholder="Total no. of tickets to vote"/>
+    <br>
+    <br>
+    <a href="#" onclick="voteForCandidate(); return false;" class="btn btn-primary">Vote</a>
+   </div>
+   <div class="col-sm-offset-1 col-sm-4">
+    <div class="col-sm-12 form">
+     <h2>Purchase Tickets</h2>
+     <div id="buy-msg"></div>
+     <input type="text" id="buy" class="col-sm-8" placeholder="Number of tickets to buy"/>
+     <a href="#" onclick="buyTickets(); return false;" class="btn btn-primary">Buy</a>
+    </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</body>
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="simpleVote.js"></script>
+</html>
