@@ -168,11 +168,10 @@ function startApp() {
   getValue();
   });*/
 
-  web3.eth.getAccounts().then(accounts => {
-	  document.getElementById('accountAddr').innerHTML = getLink(accounts[0]);
-	  accountAddress = accounts[0];
-	  getValue();
-  });
+  var accounts = web3.eth.getAccounts();
+  document.getElementById('accountAddr').innerHTML = getLink(accounts[0]);
+  accountAddress = accounts[0];
+  getValue();
 }
 
 function getLink(addr) {
