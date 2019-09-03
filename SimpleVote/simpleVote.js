@@ -168,6 +168,7 @@ function startApp() {
   getValue();
   });*/
 
+  document.getElementById('accountAddr').innerHTML = getLink(accountAddress);
   getValue();
 }
 
