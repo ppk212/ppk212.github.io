@@ -151,8 +151,8 @@ window.addEventListener('load', function() {
     console.log('No web3? You should consider trying MetaMask!')
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
 	window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-	console.log(window.web3);
   }
+  console.log(window.web3);
   // Now you can start your app & access web3 freely:
   startApp();
 });
@@ -161,17 +161,17 @@ function startApp() {
   simpleVoteContract = web3.eth.contract(abi);
   simpleVote = simpleVoteContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
-  /*
+  
   web3.eth.getAccounts(function(e,r){
   document.getElementById('accountAddr').innerHTML = getLink(r[0]);
   accountAddress = r[0];
   getValue();
-  });*/
+  });
 
-  var accounts = web3.eth.getAccounts();
+  /*var accounts = web3.eth.getAccounts();
   document.getElementById('accountAddr').innerHTML = getLink(accounts[0]);
   accountAddress = accounts[0];
-  getValue();
+  getValue();*/
 }
 
 function getLink(addr) {
