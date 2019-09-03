@@ -161,7 +161,7 @@ function startApp() {
   simpleVote = simpleVoteContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
 
-  accountAddress = 0xEc5eE3E6203667e7A22968460AaD40079b1C9ab8;
+  accountAddress = '0xEc5eE3E6203667e7A22968460AaD40079b1C9ab8';
   /*web3.eth.getAccounts(function(e,r){
   document.getElementById('accountAddr').innerHTML = getLink(r[0]);
   accountAddress = r[0];
