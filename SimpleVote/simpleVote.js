@@ -161,11 +161,17 @@ function startApp() {
   simpleVoteContract = web3.eth.contract(abi);
   simpleVote = simpleVoteContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
-  
+  /*
   web3.eth.getAccounts(function(e,r){
   document.getElementById('accountAddr').innerHTML = getLink(r[0]);
   accountAddress = r[0];
   getValue();
+  });*/
+
+  web3.eth.getAccounts().then(accounts => {
+	  document.getElementById('accountAddr').innerHTML = getLink(accounts[0]);
+	  accountAddress = accounts[0];
+	  getValue();
   });
 }
 
