@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>block view</title>
+	</head>
+
+	<body>
+		<br />
+		<input type="button" value="start" onclick="startMonitor();" />
+		<input type="button" value="stop" onclick="stopWatch();" />
+		<table id="list" border="1">
+			<tr>
+				<th>Block<br />Number</th>
+				<th>TimeStamp</th>
+				<th>BlockHash</th>
+				<th>Nonce</th>
+				<th>Transaction</th>
+			</tr>
+		</table>
+	</body>
+	<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="monitor.js"></script>
+</html>
