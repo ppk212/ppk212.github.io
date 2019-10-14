@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 
-contract voteTest {
+contract simpleVote {
     mapping(address => uint) private tickets;
     mapping(bytes32 => uint) private received_count;
     
