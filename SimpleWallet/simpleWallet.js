@@ -361,15 +361,14 @@ function getLink(addr) {
 
 function getValue() {
   //getEther();
-  getTokenInfo();
-  getToken();  
-//   getCandidateInfo();
+  getTokenInfo();  
+  getFriendsList();
 }
 
 function getToken() {
 	simpleWallet.getBalance(accountAddress, function(e,r){		
 		//document.getElementById('tokenValue').innerHTML = r.toString();
-		document.getElementById('tokenValue').innerHTML =web3.fromWei(r.toString()) + token_symbol;
+		document.getElementById('tokenValue').innerHTML =web3.fromWei(r.toString()) + " " + token_symbol;
 	});
 }
 
@@ -379,7 +378,19 @@ function getTokenInfo() {
 	token_symbol = r[1].toString();
 	document.getElementById('tokenName').innerHTML = token_name;
 	document.getElementById('tokenSymbol').innerHTML = token_symbol;
+	getToken();
   });
+}
+
+function getFriendsList() {
+	var select = document.getElementById('friends');
+
+	for(var i = 0; i < 10; i++) {
+		var opt = document.createElement('option');
+		opt.value = i;
+		opt.innerHTML = i;
+		select.appendChild(opt);
+	}
 }
 
 function getCandidateInfo() {
