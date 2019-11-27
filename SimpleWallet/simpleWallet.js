@@ -349,9 +349,9 @@ function startApp() {
   document.getElementById('erc20contractAddr').innerHTML = getLink(ERC20_contractAddress);
   
   web3.eth.getAccounts(function(e,r){
-  document.getElementById('accountAddr').innerHTML = getLink(r[0]);
-  accountAddress = r[0];
-  getValue();
+  	document.getElementById('accountAddr').innerHTML = getLink(r[0]);
+  	accountAddress = r[0];
+  	getValue();
   });
 }
 
@@ -363,12 +363,13 @@ function getValue() {
   //getEther();
   getTokenInfo();
   getToken();  
-  getCandidateInfo();
+//   getCandidateInfo();
 }
 
 function getToken() {
-	simpleWallet.getBalance(function(accountAddress, e,r){		
-		document.getElementById('tokenValue').innerHTML = r.toString();
+	simpleWallet.getBalance(accountAddress, function(e,r){		
+		//document.getElementById('tokenValue').innerHTML = r.toString();
+		document.getElementById('tokenValue').innerHTML =web3.fromWei(r.toString()) + token_symbol;
 	});
 }
 
