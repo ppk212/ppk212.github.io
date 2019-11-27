@@ -329,6 +329,7 @@ let token_decimal;
 
 window.addEventListener('load', function() {
 
+	getFriendsList();
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
   if (typeof web3 !== 'undefined') {
     // Use Mist/MetaMask's provider
@@ -383,13 +384,11 @@ function getTokenInfo() {
 }
 
 function getFriendsList() {
-	var select = document.getElementById('friends');
+	var select = $("#friends_list").val();
 
 	for(var i = 0; i < 10; i++) {
-		var opt = document.createElement('option');
-		opt.value = i;
-		opt.innerHTML = i;
-		select.appendChild(opt);
+		var opt = $("<option>" + i + "</option>");
+		$('#friends_list').append(opt);
 	}
 }
 
