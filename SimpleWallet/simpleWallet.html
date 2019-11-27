@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>ERC20 Wallet App</title>
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+ <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+ <style>
+   </style>
+</head>
+<body class="row">
+ <h1 class="text-center banner">ERC20 Wallet Application <br>(Ropsten Testnet)</h1>
+ <div class="container">
+  <div class="row margin-top-3">
+   <div class="col-sm-12">
+    <ul>
+      <li>ERC20 Contract Address : <span id="erc20contractAddr"></span></li>
+      </p>
+      <li>My Account Address : <span id="accountAddr"></span></li>
+      </p>
+      <li>Holding Token Count : <span id="tokenValue"></span></li>
+      </p>
+      <li>Token Name : <span id="tokenName"></span></li>
+      </p>
+      <li>Token Symbol : <span id="tokenSymbol"></span></li>
+      <p></p>      
+    </ul>
+   </div>
+  </div>
+  <div class="row margin-top-3">
+   <div class="col-sm-6">
+    <h2>Send</h2>
+    <div class="row margin-top-3">
+        <div class="col-sm-24">
+         <ul>
+           <li>Address<span id="erc20Token"></span></li>
+           <p></p>
+           <input type="text" style="text-align: right; padding-right: 12px" id="buy" class="col-sm-8" placeholder="Address of Receiver"/><br><br><br>
+           <p></p>
+           <li><span id="accountAddr">ETH</span></li>
+           <p></p>
+           <input type="text" style="text-align: right; padding-right: 12px" id="buy" class="col-sm-8" placeholder="Number of ETH to transfer"/><br><br><br>
+           <p></p>        
+           <div align="center">
+           <a href="#" onclick="voteForCandidate(); return false;" class="btn btn-primary">Send</a>
+           </div>
+         </ul>
+        </div>
+       </div>
+   </div>
+   <div class="col-sm-3">
+    <h2>Account list</h2>
+    <select name='friends' size='15' style='min-width: 380px;'>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>      
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+      <option value=''>0x604F0008994341bA53051B9d380cb2c7e4e7DF68</option>
+    </select>    
+   </div>
+  </div>
+ </body>
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="simpleWallet.js"></script>
+</html>
