@@ -434,7 +434,7 @@ function sendToken() {
 
 	var real_token;
 
-	web3.toWei(_token, "wei", function(e,r) {
+	web3.toWei(_token, "ether", function(e,r) {
 		real_token = r;
 	});
 
