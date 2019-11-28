@@ -410,7 +410,7 @@ function getTokenInfo() {
 function getFriendsList() {
 	simpleWallet.getFriendsList(function(e,r){
 		for(let i=0; i<r.length; i++) {
-			var opt = $("<option>" + i + "</option>");
+			var opt = $("<option>" + r[i].toString() + "</option>");
 			$('#friends_list').append(opt);
 		}
 	});
@@ -421,6 +421,11 @@ function selectFriend() {
 	var text = friendSelect.options[friendSelect.selectedIndex].text;
 	
 	document.getElementById('receiver').value = text;
+
+	simpleWallet.getBalance(text, function(e,r){		
+		//document.getElementById('tokenValue').innerHTML = r.toString();
+		document.getElementById('tokenValueToAddress').innerHTML =web3.fromWei(r.toString()) + " " + token_symbol;
+	});
 }
 
 function sendToken() {
@@ -428,6 +433,11 @@ function sendToken() {
 	var _token = document.getElementById('token_num').value;
 
 	console.log("Send "+ _token + " to " + _receiver);
+
+	simpleWallet.transfer(_receiver, _token, function(e,r){
+		console.log("Complete!");
+		getToken();
+	});
 }
 
 function addFriend() {
