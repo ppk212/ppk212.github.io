@@ -432,11 +432,7 @@ function sendToken() {
 	var _receiver = document.getElementById('receiver').value;
 	var _token = document.getElementById('token_num').value;
 
-	var real_token;
-
-	web3.toWei(_token, "ether", function(e,r) {
-		real_token = r;
-	});
+	var real_token = web3.toWei(_token, 'ether');
 
 	console.log("Send "+ _token + "TTT to " + _receiver);	
 
