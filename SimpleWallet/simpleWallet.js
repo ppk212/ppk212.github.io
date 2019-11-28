@@ -1,6 +1,20 @@
-let ERC20_contractAddress = '0x2fCbbCa3a107d00282dd6C667C27E57A6a7C5225';
+let ERC20_contractAddress = '0x25871a74894dcecd887b010a14a8b1bd189febb8';
 let ERC20_abi = 
 [
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
 	{
 		"constant": false,
 		"inputs": [
@@ -25,18 +39,36 @@ let ERC20_abi =
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
 			{
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"name": "subtractedValue",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "decreaseAllowance",
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
 		"outputs": [
 			{
 				"name": "",
@@ -45,6 +77,20 @@ let ERC20_abi =
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "decimals",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -60,6 +106,62 @@ let ERC20_abi =
 			}
 		],
 		"name": "increaseAllowance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"name": "subtractedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "decreaseAllowance",
 		"outputs": [
 			{
 				"name": "",
@@ -94,30 +196,91 @@ let ERC20_abi =
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "sender",
-				"type": "address"
-			},
-			{
-				"name": "recipient",
-				"type": "address"
-			},
-			{
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transferFrom",
+		"constant": true,
+		"inputs": [],
+		"name": "getTokenInfo",
 		"outputs": [
 			{
 				"name": "",
-				"type": "bool"
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
 			}
 		],
 		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "friend",
+				"type": "address"
+			}
+		],
+		"name": "addFriend",
+		"outputs": [],
+		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"name": "spender",
+				"type": "address"
+			}
+		],
+		"name": "allowance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "getBalance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getFriendsList",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -129,10 +292,6 @@ let ERC20_abi =
 			{
 				"name": "token_symbol",
 				"type": "string"
-			},
-			{
-				"name": "token_decimal",
-				"type": "uint8"
 			}
 		],
 		"payable": false,
@@ -182,141 +341,6 @@ let ERC20_abi =
 		],
 		"name": "Approval",
 		"type": "event"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"name": "spender",
-				"type": "address"
-			}
-		],
-		"name": "allowance",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "decimals",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "getBalance",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getTokenInfo",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "name",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "symbol",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ];
 
@@ -328,8 +352,6 @@ let token_symbol;
 let token_decimal;
 
 window.addEventListener('load', function() {
-
-	getFriendsList();
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
   if (typeof web3 !== 'undefined') {
     // Use Mist/MetaMask's provider
@@ -341,6 +363,7 @@ window.addEventListener('load', function() {
   }
   console.log(window.web3);
   // Now you can start your app & access web3 freely:
+  //getFriendsList();
   startApp();
 });
 
@@ -379,48 +402,39 @@ function getTokenInfo() {
 	token_symbol = r[1].toString();
 	document.getElementById('tokenName').innerHTML = token_name;
 	document.getElementById('tokenSymbol').innerHTML = token_symbol;
+	document.getElementById('erc20Token').innerHTML = token_symbol;
 	getToken();
   });
 }
 
 function getFriendsList() {
-	var select = $("#friends_list").val();
-
-	for(var i = 0; i < 10; i++) {
-		var opt = $("<option>" + i + "</option>");
-		$('#friends_list').append(opt);
-	}
+	simpleWallet.getFriendsList(function(e,r){
+		for(let i=0; i<r.length; i++) {
+			var opt = $("<option>" + i + "</option>");
+			$('#friends_list').append(opt);
+		}
+	});
 }
 
-function getCandidateInfo() {
-  simpleVote.getCandidatesTicket(function(e,r){
-    for(let i=1;i<=r.length;i++)
-    {
-      document.getElementById('day_votes_' + i).innerHTML = r[i-1].toString();
-    }
-  });
+function selectFriend() {
+	var friendSelect = document.getElementById("friends_list");
+	var text = friendSelect.options[friendSelect.selectedIndex].text;
+	
+	document.getElementById('receiver').value = text;
 }
 
-function voteForCandidate() {
-  let candidateName = $("#candidate").val();
-  let voteTokens = $("#vote-tickets").val();
-  $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
-  $("#candidate").val("");
-  $("#vote-tokens").val("");
+function sendToken() {
+	var _receiver = document.getElementById('receiver').value;
+	var _token = document.getElementById('token_num').value;
 
-  simpleVote.vote(candidateName, voteTokens, function (e, r){
-    getCandidateInfo();
-  });
+	console.log("Send "+ _token + " to " + _receiver);
 }
 
-function buyTickets() {
-  let tokensToBuy = $("#buy").val();
-  let price = tokensToBuy * tokenPrice;
-  $("#buy-msg").html("Purchase order has been submitted. Please wait.");
+function addFriend() {
+	var _friend = document.getElementById('address_friend').value;
 
-  simpleVote.buy({value: web3.toWei(price, 'ether'), from: web3.eth.accounts[0]}, function(v) {
-    web3.eth.getBalance(simpleVote.address, function(e, r) {
-    $("#contract-balance").html(web3.fromWei(r.toString()) + " ETH");
-   });
-  });
+	simpleWallet.addFriend(_friend, function(e,r) {
+		console.log("Complete, Add friend.")
+		getFriendsList();
+	}); 
 }

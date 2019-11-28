@@ -32,16 +32,16 @@
     <div class="row margin-top-3">
         <div class="col-sm-24">
          <ul>
-           <li>Address<span id="erc20Token"></span></li>
+           <li>Address</li>
            <p></p>
-           <input type="text" style="text-align: right; padding-right: 12px" id="buy" class="col-sm-8" placeholder="Address of Receiver"/><br><br><br>
+           <input type="text" style="text-align: right; padding-right: 12px" id="receiver" class="col-sm-8" placeholder="Address of Receiver"/><br><br><br>
            <p></p>
-           <li><span id="accountAddr">ETH</span></li>
+           <li><span id="erc20Token">ETH</span></li>
            <p></p>
-           <input type="text" style="text-align: right; padding-right: 12px" id="buy" class="col-sm-8" placeholder="Number of ETH to transfer"/><br><br><br>
-           <p></p>        
+           <input type="text" style="text-align: right; padding-right: 12px" id="token_num" class="col-sm-8" placeholder="Number of ERC20 to transfer"/><br><br><br>
+           <p></p>
            <div align="center">
-           <a href="#" onclick="voteForCandidate(); return false;" class="btn btn-primary">Send</a>
+           <a href="#" onclick="sendToken(); return false;" class="btn btn-primary">Send</a>
            </div>
          </ul>
         </div>
@@ -49,9 +49,15 @@
    </div>
    <div class="col-sm-3">
     <h2>Account list</h2>
-    <select id='friends_list' name='friends' size='15' style='min-width: 380px;'>
+    <select id='friends_list' name='friends' size='15' style='min-width: 380px;' onchange="selectFriend()">
     </select>    
    </div>
+   <div class="col-sm-12 form">
+      <h2>Add friend</h2>
+      <div id="add-msg"></div>
+      <input type="text" id="address_friend" class="col-sm-8" placeholder="Address of friend"/>
+      <a href="#" onclick="addFriend(); return false;" class="btn btn-primary">Add</a>
+     </div>
   </div>
  </body>
 <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>

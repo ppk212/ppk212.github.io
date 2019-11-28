@@ -12,10 +12,11 @@ import "./ERC20Detailed.sol";
  */
 contract SimpleToken is Context, ERC20, ERC20Detailed {
 
+    mapping(address=>address[]) friends_list;
     /**
      * @dev Constructor that gives _msgSender() all of existing tokens.
      */
-    constructor (string memory token_name, string memory token_symbol, uint8 token_decimal) public ERC20Detailed(token_name, token_symbol, token_decimal) {
+    constructor (string memory token_name, string memory token_symbol) public ERC20Detailed(token_name, token_symbol, 18) {
         _mint(_msgSender(), 10000 * (10 ** uint256(decimals())));
     }
     
@@ -29,5 +30,13 @@ contract SimpleToken is Context, ERC20, ERC20Detailed {
     
     function getTokenInfo() public view returns (string memory, string memory) {
         return (name(), symbol());
+    }
+    
+    function getFriendsList() public view returns (address[] memory) {
+        return (friends_list[msg.sender]);
+    }
+    
+    function addFriend(address friend) public {
+        friends_list[msg.sender].push(friend);
     }
 }
