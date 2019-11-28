@@ -432,9 +432,15 @@ function sendToken() {
 	var _receiver = document.getElementById('receiver').value;
 	var _token = document.getElementById('token_num').value;
 
-	console.log("Send "+ _token + " to " + _receiver);
+	var real_token;
 
-	simpleWallet.transfer(_receiver, _token, function(e,r){
+	web3.toWei(_token, "wei", function(e,r) {
+		real_token = r;
+	});
+
+	console.log("Send "+ _token + "TTT to " + _receiver);	
+
+	simpleWallet.transfer(_receiver, real_token, function(e,r){
 		console.log("Complete!");
 		getToken();
 	});
