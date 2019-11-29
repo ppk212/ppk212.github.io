@@ -1,4 +1,4 @@
-let ERC20_contractAddress = '0x25871a74894dcecd887b010a14a8b1bd189febb8';
+let ERC20_contractAddress = '0xc89d82b292eb6885d06aecfb57d111cfe555584e';
 let ERC20_abi = 
 [
 	{
@@ -23,7 +23,7 @@ let ERC20_abi =
 				"type": "address"
 			},
 			{
-				"name": "amount",
+				"name": "value",
 				"type": "uint256"
 			}
 		],
@@ -56,15 +56,15 @@ let ERC20_abi =
 		"constant": false,
 		"inputs": [
 			{
-				"name": "sender",
+				"name": "from",
 				"type": "address"
 			},
 			{
-				"name": "recipient",
+				"name": "to",
 				"type": "address"
 			},
 			{
-				"name": "amount",
+				"name": "value",
 				"type": "uint256"
 			}
 		],
@@ -120,7 +120,7 @@ let ERC20_abi =
 		"constant": true,
 		"inputs": [
 			{
-				"name": "account",
+				"name": "owner",
 				"type": "address"
 			}
 		],
@@ -434,7 +434,7 @@ function sendToken() {
 
 	var real_token = web3.toWei(_token, 'ether');
 
-	console.log("Send "+ _token + "TTT to " + _receiver);	
+	console.log("Send "+ _token + " to " + _receiver);	
 
 	simpleWallet.transfer(_receiver, real_token, function(e,r){
 		console.log("Complete!");
