@@ -10,19 +10,19 @@ import "./SafeMath.sol";
  * https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md
  * Originally based on code by FirstBlood: https://github.com/Firstbloodio/token/blob/master/smart_contract/FirstBloodToken.sol
  */
-contract ERC20 is IERC20 {
-  using SafeMath for uint256;
+contract ERC20 is IERC20 { // IERC20 Interface를 상속
+  using SafeMath for uint256; // SafeMath Library 를 사용
 
-  mapping (address => uint256) private _balances;
+  mapping (address => uint256) private _balances; // 잔액을 담는 mapping 데이터
 
-  mapping (address => mapping (address => uint256)) private _allowed;
+  mapping (address => mapping (address => uint256)) private _allowed; // 상대방에게 전송 가능한 토큰의 양을 저장하는 mapping 데이터
 
-  uint256 private _totalSupply;
+  uint256 private _totalSupply; // 총 발행량
 
   /**
   * @dev Total number of tokens in existence
   */
-  function totalSupply() public view returns (uint256) {
+  function totalSupply() public view returns (uint256) { // 총 발행량을 반환하는 Method
     return _totalSupply;
   }
 
@@ -31,7 +31,7 @@ contract ERC20 is IERC20 {
   * @param owner The address to query the balance of.
   * @return An uint256 representing the amount owned by the passed address.
   */
-  function balanceOf(address owner) public view returns (uint256) {
+  function balanceOf(address owner) public view returns (uint256) { // 잔액을 반환하는 Method
     return _balances[owner];
   }
 
@@ -41,7 +41,7 @@ contract ERC20 is IERC20 {
    * @param spender address The address which will spend the funds.
    * @return A uint256 specifying the amount of tokens still available for the spender.
    */
-  function allowance(
+  function allowance( // 소유자가 지출자에게 보낼 수 있는 토큰의 양을 확인하는 Method
     address owner,
     address spender
    )
@@ -57,8 +57,8 @@ contract ERC20 is IERC20 {
   * @param to The address to transfer to.
   * @param value The amount to be transferred.
   */
-  function transfer(address to, uint256 value) public returns (bool) {
-    _transfer(msg.sender, to, value);
+  function transfer(address to, uint256 value) public returns (bool) { // 돈을 전송하는 Method
+    _transfer(msg.sender, to, value); // 실질적은 전송 Method인 _transfer를 호출
     return true;
   }
 
@@ -154,13 +154,13 @@ contract ERC20 is IERC20 {
   * @param to The address to transfer to.
   * @param value The amount to be transferred.
   */
-  function _transfer(address from, address to, uint256 value) internal {
-    require(value <= _balances[from]);
-    require(to != address(0));
+  function _transfer(address from, address to, uint256 value) internal { // 돈을 전송하는 Method
+    require(value <= _balances[from]); // 보낼 금액이 자신의 보유량보다 작으면 오류 발생
+    require(to != address(0)); // 보낼 사람의 주소가 0x00000000이면 오류 발생
 
-    _balances[from] = _balances[from].sub(value);
-    _balances[to] = _balances[to].add(value);
-    emit Transfer(from, to, value);
+    _balances[from] = _balances[from].sub(value); // from의 잔액을 value만큼 감소
+    _balances[to] = _balances[to].add(value); // to의 잔액을 value만큼 증가
+    emit Transfer(from, to, value); // Transfer Event 발생
   }
 
   /**
@@ -170,11 +170,11 @@ contract ERC20 is IERC20 {
    * @param account The account that will receive the created tokens.
    * @param value The amount that will be created.
    */
-  function _mint(address account, uint256 value) internal {
-    require(account != 0);
-    _totalSupply = _totalSupply.add(value);
-    _balances[account] = _balances[account].add(value);
-    emit Transfer(address(0), account, value);
+  function _mint(address account, uint256 value) internal { // 처음 화폐를 만들때 호출되는 함수
+    require(account != 0); // 주소가 0x00000000이면 오류 발생
+    _totalSupply = _totalSupply.add(value); // 총 공급량을 value만큼 증가
+    _balances[account] = _balances[account].add(value); // 해당 주소의 계정에게 잔액을 value만큼 더함
+    emit Transfer(address(0), account, value); // Transfer Event 발생
   }
 
   /**
