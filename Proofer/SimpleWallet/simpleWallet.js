@@ -1,4 +1,4 @@
-let ERC20_contractAddress = '0x1d4c1888d0f539382b5392b39a2fbc3f65b9c0df';
+let ERC20_contractAddress = '0xac166b632f53d49f10f1e02eb117acd91b3e37b2';
 let ERC20_abi = 
 [
 	{
@@ -273,7 +273,7 @@ let ERC20_abi =
 	},
   ];
 
-let friend_contractAddress = '0x635bc8a250202d6f081f70a7fb12033593719a36';
+let friend_contractAddress = '0x27f8d7ea7786bc06c0d601f8cda383819d982832';
 let friend_abi = [
 	{
 		"constant": false,
