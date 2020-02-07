@@ -1,5 +1,5 @@
-let ERC20_contractAddress = '0x018c235EBee71257ea992272807E5935D2643b98';
-let ERC20_abi = 
+let ERC20_contractAddress = '0x1b5947156755611d011d004c4ffec41b40fe2674';
+let ERC20_abi =
 [
 	{
 	  "constant": true,
@@ -334,7 +334,7 @@ function startApp() {
 
   friendContract = web3.eth.contract(friend_abi);
   friends = friendContract.at(friend_contractAddress);
-  
+
   web3.eth.getAccounts(function(e,r){
   	document.getElementById('accountAddr').innerHTML = getLink(r[0]);
   	accountAddress = r[0];
@@ -347,26 +347,26 @@ function getLink(addr) {
 }
 
 function getValue() {
-  getTokenInfo();  
+  getTokenInfo();
   getFriendsList();
 }
 
 function getToken() {
-	simpleWallet.balanceOf(accountAddress, function(e,r){		
+	simpleWallet.balanceOf(accountAddress, function(e,r){
 		document.getElementById('tokenValue').innerHTML =web3.fromWei(r.toString()) + " " + token_symbol;
 	});
 }
 
 function getTokenInfo() {
   simpleWallet.name(function(e,r){
-	token_name = r.toString();	
-	document.getElementById('tokenName').innerHTML = token_name;	
+	token_name = r.toString();
+	document.getElementById('tokenName').innerHTML = token_name;
 	getToken();
   });
-  simpleWallet.symbol(function(e,r){	
+  simpleWallet.symbol(function(e,r){
 	token_symbol = r.toString();
 	document.getElementById('tokenSymbol').innerHTML = token_symbol;
-	document.getElementById('erc20Token').innerHTML = token_symbol;	
+	document.getElementById('erc20Token').innerHTML = token_symbol;
   });
 }
 
@@ -382,7 +382,7 @@ function getFriendsList() {
 function selectFriend() {
 	var friendSelect = document.getElementById("friends_list");
 	var text = friendSelect.options[friendSelect.selectedIndex].text;
-	
+
 	document.getElementById('receiver').value = text;
 
 	simpleWallet.balanceOf(text, function(e,r){
@@ -396,7 +396,7 @@ function sendToken() {
 
 	var real_token = web3.toWei(_token, 'ether');
 
-	console.log("Send "+ _token + " to " + _receiver);	
+	console.log("Send "+ _token + " to " + _receiver);
 
 	simpleWallet.transfer(_receiver, real_token, function(e,r){
 		console.log("Complete!");
@@ -410,5 +410,5 @@ function addFriend() {
 	friends.addFriend(_friend, function(e,r) {
 		console.log("Complete, Add friend.")
 		getFriendsList();
-	}); 
+	});
 }
