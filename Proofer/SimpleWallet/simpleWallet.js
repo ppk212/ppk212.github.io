@@ -1,4 +1,4 @@
-let ERC20_contractAddress = '0x1b5947156755611d011d004c4ffec41b40fe2674';
+let ERC20_contractAddress = '0x71ac93e0956a2b5cb42e52754782ec91f8876f5b';
 let ERC20_abi =
 [
 	{
